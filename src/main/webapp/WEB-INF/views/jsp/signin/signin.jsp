@@ -12,7 +12,7 @@
     <jsp:body>
         <f:panel title="Sign In">
             <jsp:body>
-                <form class="form-narrow form-horizontal" action="#" method="post" action="authenticate">
+                <form class="form-narrow form-horizontal" method="post" action="authenticate">
                     <c:if test="${param.error != null}">
                         <f:alert type="danger" message="Sign in error. Please try again."/>
                     </c:if>

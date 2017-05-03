@@ -24,7 +24,7 @@
         <div class="form-group${fields.hasErrors('password') ? ' has-error' : ''}">
             <label for="password" class="col-lg-2 control-label">Password</label>
             <div class="col-lg-10">
-                <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}"/>
+                <input type="password" class="form-control" id="password" placeholder="Password"/>
                 <span class="help-block">Incorrect password</span>
             </div>
         </div>

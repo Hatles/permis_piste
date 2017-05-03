@@ -5,11 +5,17 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="f" tagdir="/WEB-INF/tags/fragments" %>
 
-<t:generic_page>
-    <jsp:attribute name="title">
-        Error page
-    </jsp:attribute>
-    <jsp:body>
-        <f:alert type="danger" message="${errorMessage})"/>
-    </jsp:body>
-</t:generic_page>
+<%--<t:generic_page>--%>
+    <%--<jsp:attribute name="title">--%>
+        <%--Error page--%>
+    <%--</jsp:attribute>--%>
+    <%--<jsp:body>--%>
+        <%--<f:alert type="danger" message="${errorMessage})"/>--%>
+    <%--</jsp:body>--%>
+<%--</t:generic_page>--%>
+<html>
+<head><title>Error page</title></head>
+<body>
+<f:alert type="danger" message="${errorMessage})"/>
+</body>
+</html>
