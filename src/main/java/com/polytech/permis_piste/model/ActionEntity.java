@@ -2,6 +2,7 @@ package com.polytech.permis_piste.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by kifkif on 03/05/2017.
@@ -13,9 +14,9 @@ public class ActionEntity {
     private Integer actNumaction;
     private String libaction;
     private Integer scoremin;
-    private ActionEntity actionByActNumaction;
+    private ActionEntity action;
     private Collection<ActionEntity> actions;
-    private Collection<ObjectifEntity> objectifs;
+    private Collection<ObjectifEntity> objectifs = new HashSet<>();
     private Collection<IndicateurEntity> indicateurs;
     private Collection<ObtientEntity> scores;
 
@@ -95,15 +96,15 @@ public class ActionEntity {
 
     @ManyToOne
     @JoinColumn(name = "ACT_NUMACTION", referencedColumnName = "NUMACTION", insertable = false, updatable = false)
-    public ActionEntity getActionByActNumaction() {
-        return actionByActNumaction;
+    public ActionEntity getAction() {
+        return action;
     }
 
-    public void setActionByActNumaction(ActionEntity actionByActNumaction) {
-        this.actionByActNumaction = actionByActNumaction;
+    public void setAction(ActionEntity action) {
+        this.action = action;
     }
 
-    @OneToMany(mappedBy = "actionByActNumaction")
+    @OneToMany(mappedBy = "action")
     public Collection<ActionEntity> getActions() {
         return actions;
     }
@@ -130,10 +131,22 @@ public class ActionEntity {
         this.scores = scores;
     }
 
-    @ManyToMany(mappedBy="actions")
+    @ManyToMany
+    @JoinTable(name="est_associe",
+            joinColumns=
+            @JoinColumn(name="numaction", referencedColumnName="numaction"),
+            inverseJoinColumns=
+            @JoinColumn(name="numobjectif", referencedColumnName="numobjectif")
+    )
     public Collection<ObjectifEntity> getObjectifs() { return objectifs; }
 
     public void setObjectifs(Collection<ObjectifEntity> objectifs) {
         this.objectifs = objectifs;
+    }
+
+    public ActionEntity addObjectif(ObjectifEntity objectif)
+    {
+        this.objectifs.add(objectif);
+        return this;
     }
 }

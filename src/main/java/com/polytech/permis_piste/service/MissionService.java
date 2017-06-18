@@ -21,16 +21,48 @@ public class MissionService {
     @Autowired
     private MissionDAO missionDAO;
 
+    @Autowired
+    private JeuService jeuService;
+
+    @Autowired
+    private ObjectifService objectifService;
+
     @PostConstruct
     protected void initialize() {
-        save(new MissionEntity(1, 1, "Mission A"));
-        save(new MissionEntity(2, 1, "Mission B"));
-        save(new MissionEntity(3, 1, "Mission C"));
-        save(new MissionEntity(4, 1, "Mission 3"));
-        save(new MissionEntity(5, 2, "Mission A2"));
-        save(new MissionEntity(6, 2, "Mission B2"));
-        save(new MissionEntity(7, 2, "Mission C2"));
-        save(new MissionEntity(8, 2, "Mission D2"));
+        save(new MissionEntity(1, 1, "Mission A")
+                .addObjectif(objectifService.getById(1))
+                .addObjectif(objectifService.getById(4))
+                .addObjectif(objectifService.getById(5))
+                .addObjectif(objectifService.getById(6))
+        );
+        save(new MissionEntity(2, 1, "Mission B")
+                .addObjectif(objectifService.getById(2))
+                .addObjectif(objectifService.getById(3))
+                .addObjectif(objectifService.getById(5))
+        );
+        save(new MissionEntity(3, 1, "Mission C")
+                .addObjectif(objectifService.getById(5))
+                .addObjectif(objectifService.getById(7))
+                .addObjectif(objectifService.getById(8))
+        );
+        save(new MissionEntity(4, 1, "Mission 3")
+                .addObjectif(objectifService.getById(3))
+                .addObjectif(objectifService.getById(4))
+        );
+        save(new MissionEntity(5, 2, "Mission A2")
+                .addObjectif(objectifService.getById(1))
+                .addObjectif(objectifService.getById(5))
+                .addObjectif(objectifService.getById(7))
+        );
+        save(new MissionEntity(6, 2, "Mission B2")
+                .addObjectif(objectifService.getById(2))
+        );
+        save(new MissionEntity(7, 2, "Mission C2")
+                .addObjectif(objectifService.getById(7))
+        );
+        save(new MissionEntity(8, 2, "Mission D2")
+                .addObjectif(objectifService.getById(5))
+        );
     }
 
     @Transactional

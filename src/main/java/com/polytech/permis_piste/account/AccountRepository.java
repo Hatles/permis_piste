@@ -13,6 +13,9 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
 	@Query("select count(a) > 0 from Account a where a.email = :email")
 	boolean exists(@Param("email") String email);
+
+	@Query("select count(a) > 0 from Account a where a.apprenant = :apprenant")
+	boolean exists(@Param("apprenant") ApprenantEntity apprenant);
 /*
 	@Query("delete from Account a where a.apprenant = :apprenantEntity")
 	void deleteByApprenant(ApprenantEntity apprenantEntity);*/

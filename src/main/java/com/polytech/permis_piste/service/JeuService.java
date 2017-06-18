@@ -52,4 +52,8 @@ public class JeuService {
     public JeuEntity getById(int id) {
         return jeuDAO.findOne(id);
     }
+
+    public JeuEntity getByName(String name) {
+        return jeuDAO.findByLibellejeu(name);
+    }
 }

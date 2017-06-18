@@ -2,6 +2,7 @@ package com.polytech.permis_piste.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by kifkif on 03/05/2017.
@@ -11,8 +12,8 @@ import java.util.Collection;
 public class ObjectifEntity {
     private Integer numobjectif;
     private String libobectif;
-    private Collection<ActionEntity> actions;
-    private Collection<MissionEntity> missions;
+    private Collection<ActionEntity> actions = new HashSet<>();
+    private Collection<MissionEntity> missions = new HashSet<>();
 
     public ObjectifEntity() {
     }
@@ -24,7 +25,7 @@ public class ObjectifEntity {
 
     @Id
     @Column(name = "NUMOBJECTIF")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getNumobjectif() {
         return numobjectif;
     }
@@ -72,16 +73,15 @@ public class ObjectifEntity {
         this.missions = missions;
     }
 
-    @ManyToMany
-    @JoinTable(name="est_associe",
-            joinColumns=
-            @JoinColumn(name="numobjectif", referencedColumnName="numobjectif"),
-            inverseJoinColumns=
-            @JoinColumn(name="numaction", referencedColumnName="numaction")
-    )
+    @ManyToMany(mappedBy = "objectifs")
     public Collection<ActionEntity> getActions() { return actions; }
 
     public void setActions(Collection<ActionEntity> actions) {
         this.actions = actions;
+    }
+
+    public ObjectifEntity addAction(ActionEntity action) {
+        this.actions.add(action);
+        return this;
     }
 }

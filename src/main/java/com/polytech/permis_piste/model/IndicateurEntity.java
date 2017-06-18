@@ -13,6 +13,15 @@ public class IndicateurEntity {
     private Integer poids;
     private ActionEntity action;
 
+    public IndicateurEntity() {
+    }
+
+    public IndicateurEntity(Integer numindic, Integer numaction, Integer poids) {
+        this.numindic = numindic;
+        this.numaction = numaction;
+        this.poids = poids;
+    }
+
     @Id
     @Column(name = "NUMINDIC")
     public Integer getNumindic() {

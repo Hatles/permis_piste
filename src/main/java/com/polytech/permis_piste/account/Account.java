@@ -13,7 +13,7 @@ import java.time.Instant;
 public class Account implements java.io.Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(unique = true)
@@ -34,6 +34,12 @@ public class Account implements java.io.Serializable {
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		this.created = Instant.now();
+	}
+
+	public Account(String email, String password) {
+		this.email = email;
+		this.password = password;
 		this.created = Instant.now();
 	}
 

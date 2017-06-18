@@ -21,16 +21,22 @@ import java.util.List;
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ApprenantService {
 
+    @Autowired
+    private AccountService accountService;
+
+    @Autowired
+    private JeuService jeuService;
+
     @PostConstruct
     protected void initialize()
     {
         save(new ApprenantEntity(1, "Caron", "Antoine"));
         save(new ApprenantEntity(2, "Chauslende", "Adrien"));
-        save(new ApprenantEntity(3, "Galdeano", "Alexandre"));
+        save(new ApprenantEntity(3, "Galdeano", "Alexandre").addJeu(jeuService.getByName("Jeu n 2")));
         save(new ApprenantEntity(4, "Reynaud", "Pierre"));
         save(new ApprenantEntity(11, "Premilieu", "Laura"));
-        save(new ApprenantEntity(12, "Fagno", "Corinne"));
-        save(new ApprenantEntity(13, "Rodarie", "Dimitri"));
+        save(new ApprenantEntity(12, "Fagno", "Corinne").addJeu(jeuService.getByName("Jeu n 1")).addJeu(jeuService.getByName("Jeu n 2")));
+        save(new ApprenantEntity(13, "Rodarie", "Dimitri").addJeu(jeuService.getByName("Jeu n 1")));
         save(new ApprenantEntity(14, "Ferjani", "Gael"));
     }
 
@@ -43,7 +49,17 @@ public class ApprenantService {
     @Transactional
     public ApprenantEntity save(ApprenantEntity apprenantEntity)
     {
-        return apprenantDAO.save(apprenantEntity);
+        ApprenantEntity apprenant = apprenantDAO.save(apprenantEntity);
+
+        if(!accountRepository.exists(apprenantEntity))
+        {
+            String email = apprenantEntity.getNomapprenant().toLowerCase();
+            Account account = new Account(email, email);
+            account.setApprenant(apprenant);
+            accountService.save(account);
+        }
+
+        return apprenant;
     }
 
     @Transactional
@@ -62,5 +78,10 @@ public class ApprenantService {
     @Transactional
     public ApprenantEntity getById(int id) {
         return this.apprenantDAO.findOne(id);
+    }
+
+    @Transactional
+    public ApprenantEntity getByName(String name) {
+        return apprenantDAO.findByNomapprenant(name);
     }
 }

@@ -24,7 +24,7 @@ public class JeuEntity {
 
     @Id
     @Column(name = "NUMJEU")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getNumjeu() {
         return numjeu;
     }

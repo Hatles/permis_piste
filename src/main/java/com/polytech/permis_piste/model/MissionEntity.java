@@ -2,6 +2,7 @@ package com.polytech.permis_piste.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by kifkif on 03/05/2017.
@@ -12,7 +13,7 @@ public class MissionEntity {
     private Integer nummission;
     private Integer numjeu;
     private String libmission;
-    private Collection<ObjectifEntity> objectifs;
+    private Collection<ObjectifEntity> objectifs = new HashSet<>();
     private JeuEntity jeu;
 
     public MissionEntity() {
@@ -26,7 +27,7 @@ public class MissionEntity {
 
     @Id
     @Column(name = "NUMMISSION")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getNummission() {
         return nummission;
     }
@@ -90,6 +91,12 @@ public class MissionEntity {
 
     public void setObjectifs(Collection<ObjectifEntity> objectifs) {
         this.objectifs = objectifs;
+    }
+
+    public MissionEntity addObjectif(ObjectifEntity objectif)
+    {
+        this.objectifs.add(objectif);
+        return this;
     }
 
     @ManyToOne

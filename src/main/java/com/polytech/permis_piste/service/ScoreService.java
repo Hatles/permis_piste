@@ -21,12 +21,18 @@ public class ScoreService {
     @Autowired
     private ObtientDAO obtientDAO;
 
+    @Autowired
+    private ApprenantService apprenantService;
+
+    @Autowired
+    private ActionService actionService;
+
     @PostConstruct
     protected void initialize() {
-//        save(new ObtientEntity(3, 3, 12));
-//        save(new ObtientEntity(3, 4, 8));
-//        save(new ObtientEntity(12, 3, 12));
-//        save(new ObtientEntity(12, 4, 18));
+        save(new ObtientEntity(3, 3, 12));
+        save(new ObtientEntity(3, 4, 8));
+        save(new ObtientEntity(12, 3, 12));
+        save(new ObtientEntity(12, 4, 18));
     }
 
     @Transactional

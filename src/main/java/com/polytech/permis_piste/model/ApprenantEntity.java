@@ -2,6 +2,7 @@ package com.polytech.permis_piste.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by kifkif on 03/05/2017.
@@ -12,7 +13,7 @@ public class ApprenantEntity {
     private Integer numapprenant;
     private String nomapprenant;
     private String prenomapprenant;
-    private Collection<JeuEntity> jeux;
+    private Collection<JeuEntity> jeux = new HashSet<>();
     private Collection<ObtientEntity> scores;
 
     public ApprenantEntity() {
@@ -31,7 +32,7 @@ public class ApprenantEntity {
 
     @Id
     @Column(name = "NUMAPPRENANT")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getNumapprenant() {
         return numapprenant;
     }
@@ -95,6 +96,12 @@ public class ApprenantEntity {
 
     public void setJeux(Collection<JeuEntity> jeux) {
         this.jeux = jeux;
+    }
+
+    public ApprenantEntity addJeu(JeuEntity jeu)
+    {
+        this.jeux.add(jeu);
+        return this;
     }
 
     @OneToMany(mappedBy = "apprenant")
