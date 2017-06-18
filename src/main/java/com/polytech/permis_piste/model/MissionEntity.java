@@ -12,8 +12,17 @@ public class MissionEntity {
     private Integer nummission;
     private Integer numjeu;
     private String libmission;
-    private Collection<FixeEntity> fixesByNummission;
-    private JeuEntity jeuByNumjeu;
+    private Collection<ObjectifEntity> objectifs;
+    private JeuEntity jeu;
+
+    public MissionEntity() {
+    }
+
+    public MissionEntity(Integer nummission, Integer numjeu, String libmission) {
+        this.nummission = nummission;
+        this.numjeu = numjeu;
+        this.libmission = libmission;
+    }
 
     @Id
     @Column(name = "NUMMISSION")
@@ -68,22 +77,28 @@ public class MissionEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "missionByNummission")
-    public Collection<FixeEntity> getFixesByNummission() {
-        return fixesByNummission;
+    @ManyToMany
+    @JoinTable(name="fixe",
+            joinColumns=
+            @JoinColumn(name="nummission", referencedColumnName="nummission"),
+            inverseJoinColumns=
+            @JoinColumn(name="numobjectif", referencedColumnName="numobjectif")
+    )
+    public Collection<ObjectifEntity> getObjectifs() {
+        return objectifs;
     }
 
-    public void setFixesByNummission(Collection<FixeEntity> fixesByNummission) {
-        this.fixesByNummission = fixesByNummission;
+    public void setObjectifs(Collection<ObjectifEntity> objectifs) {
+        this.objectifs = objectifs;
     }
 
     @ManyToOne
     @JoinColumn(name = "NUMJEU", referencedColumnName = "NUMJEU", nullable = false, insertable = false, updatable = false)
-    public JeuEntity getJeuByNumjeu() {
-        return jeuByNumjeu;
+    public JeuEntity getJeu() {
+        return jeu;
     }
 
-    public void setJeuByNumjeu(JeuEntity jeuByNumjeu) {
-        this.jeuByNumjeu = jeuByNumjeu;
+    public void setJeu(JeuEntity jeu) {
+        this.jeu = jeu;
     }
 }

@@ -12,8 +12,17 @@ public class ApprenantEntity {
     private Integer numapprenant;
     private String nomapprenant;
     private String prenomapprenant;
-    private Collection<InscriptionEntity> inscriptionsByNumapprenant;
-    private Collection<ObtientEntity> obtientsByNumapprenant;
+    private Collection<JeuEntity> jeux;
+    private Collection<ObtientEntity> scores;
+
+    public ApprenantEntity() {
+    }
+
+    public ApprenantEntity(Integer numapprenant, String nomapprenant, String prenomapprenant) {
+        this.numapprenant = numapprenant;
+        this.nomapprenant = nomapprenant;
+        this.prenomapprenant = prenomapprenant;
+    }
 
     @Id
     @Column(name = "NUMAPPRENANT")
@@ -69,21 +78,26 @@ public class ApprenantEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "apprenantByNumapprenant")
-    public Collection<InscriptionEntity> getInscriptionsByNumapprenant() {
-        return inscriptionsByNumapprenant;
+    @ManyToMany
+    @JoinTable(
+            name="inscription",
+            joinColumns = @JoinColumn( name="numapprenant"),
+            inverseJoinColumns = @JoinColumn( name="numjeu")
+    )
+    public Collection<JeuEntity> getJeux() {
+        return jeux;
     }
 
-    public void setInscriptionsByNumapprenant(Collection<InscriptionEntity> inscriptionsByNumapprenant) {
-        this.inscriptionsByNumapprenant = inscriptionsByNumapprenant;
+    public void setJeux(Collection<JeuEntity> jeux) {
+        this.jeux = jeux;
     }
 
-    @OneToMany(mappedBy = "apprenantByNumapprenant")
-    public Collection<ObtientEntity> getObtientsByNumapprenant() {
-        return obtientsByNumapprenant;
+    @OneToMany(mappedBy = "apprenant")
+    public Collection<ObtientEntity> getScores() {
+        return scores;
     }
 
-    public void setObtientsByNumapprenant(Collection<ObtientEntity> obtientsByNumapprenant) {
-        this.obtientsByNumapprenant = obtientsByNumapprenant;
+    public void setScores(Collection<ObtientEntity> scores) {
+        this.scores = scores;
     }
 }

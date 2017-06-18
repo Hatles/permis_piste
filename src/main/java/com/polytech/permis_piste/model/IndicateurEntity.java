@@ -11,7 +11,7 @@ public class IndicateurEntity {
     private Integer numindic;
     private Integer numaction;
     private Integer poids;
-    private ActionEntity actionByNumaction;
+    private ActionEntity action;
 
     @Id
     @Column(name = "NUMINDIC")
@@ -67,11 +67,11 @@ public class IndicateurEntity {
 
     @ManyToOne
     @JoinColumn(name = "NUMACTION", referencedColumnName = "NUMACTION", nullable = false, insertable = false, updatable = false)
-    public ActionEntity getActionByNumaction() {
-        return actionByNumaction;
+    public ActionEntity getAction() {
+        return action;
     }
 
-    public void setActionByNumaction(ActionEntity actionByNumaction) {
-        this.actionByNumaction = actionByNumaction;
+    public void setAction(ActionEntity action) {
+        this.action = action;
     }
 }

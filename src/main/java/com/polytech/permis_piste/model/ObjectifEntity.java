@@ -11,8 +11,16 @@ import java.util.Collection;
 public class ObjectifEntity {
     private Integer numobjectif;
     private String libobectif;
-    private Collection<EstAssocieEntity> estAssociesByNumobjectif;
-    private Collection<FixeEntity> fixesByNumobjectif;
+    private Collection<ActionEntity> actions;
+    private Collection<MissionEntity> missions;
+
+    public ObjectifEntity() {
+    }
+
+    public ObjectifEntity(Integer numobjectif, String libobectif) {
+        this.numobjectif = numobjectif;
+        this.libobectif = libobectif;
+    }
 
     @Id
     @Column(name = "NUMOBJECTIF")
@@ -55,21 +63,25 @@ public class ObjectifEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "objectifByNumobjectif")
-    public Collection<EstAssocieEntity> getEstAssociesByNumobjectif() {
-        return estAssociesByNumobjectif;
+    @ManyToMany(mappedBy = "objectifs")
+    public Collection<MissionEntity> getMissions() {
+        return missions;
     }
 
-    public void setEstAssociesByNumobjectif(Collection<EstAssocieEntity> estAssociesByNumobjectif) {
-        this.estAssociesByNumobjectif = estAssociesByNumobjectif;
+    public void setMissions(Collection<MissionEntity> missions) {
+        this.missions = missions;
     }
 
-    @OneToMany(mappedBy = "objectifByNumobjectif")
-    public Collection<FixeEntity> getFixesByNumobjectif() {
-        return fixesByNumobjectif;
-    }
+    @ManyToMany
+    @JoinTable(name="est_associe",
+            joinColumns=
+            @JoinColumn(name="numobjectif", referencedColumnName="numobjectif"),
+            inverseJoinColumns=
+            @JoinColumn(name="numaction", referencedColumnName="numaction")
+    )
+    public Collection<ActionEntity> getActions() { return actions; }
 
-    public void setFixesByNumobjectif(Collection<FixeEntity> fixesByNumobjectif) {
-        this.fixesByNumobjectif = fixesByNumobjectif;
+    public void setActions(Collection<ActionEntity> actions) {
+        this.actions = actions;
     }
 }

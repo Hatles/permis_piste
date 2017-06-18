@@ -12,8 +12,17 @@ public class ObtientEntity {
     private Integer numapprenant;
     private Integer numaction;
     private Integer valeur;
-    private ApprenantEntity apprenantByNumapprenant;
-    private ActionEntity actionByNumaction;
+    private ApprenantEntity apprenant;
+    private ActionEntity action;
+
+    public ObtientEntity() {
+    }
+
+    public ObtientEntity(Integer numapprenant, Integer numaction, Integer valeur) {
+        this.numapprenant = numapprenant;
+        this.numaction = numaction;
+        this.valeur = valeur;
+    }
 
     @Id
     @Column(name = "NUMAPPRENANT")
@@ -69,21 +78,21 @@ public class ObtientEntity {
 
     @ManyToOne
     @JoinColumn(name = "NUMAPPRENANT", referencedColumnName = "NUMAPPRENANT", nullable = false)
-    public ApprenantEntity getApprenantByNumapprenant() {
-        return apprenantByNumapprenant;
+    public ApprenantEntity getApprenant() {
+        return apprenant;
     }
 
-    public void setApprenantByNumapprenant(ApprenantEntity apprenantByNumapprenant) {
-        this.apprenantByNumapprenant = apprenantByNumapprenant;
+    public void setApprenant(ApprenantEntity apprenant) {
+        this.apprenant = apprenant;
     }
 
     @ManyToOne
     @JoinColumn(name = "NUMACTION", referencedColumnName = "NUMACTION", nullable = false)
-    public ActionEntity getActionByNumaction() {
-        return actionByNumaction;
+    public ActionEntity getAction() {
+        return action;
     }
 
-    public void setActionByNumaction(ActionEntity actionByNumaction) {
-        this.actionByNumaction = actionByNumaction;
+    public void setAction(ActionEntity action) {
+        this.action = action;
     }
 }

@@ -11,8 +11,16 @@ import java.util.Collection;
 public class JeuEntity {
     private Integer numjeu;
     private String libellejeu;
-    private Collection<InscriptionEntity> inscriptionsByNumjeu;
-    private Collection<MissionEntity> missionsByNumjeu;
+    private Collection<ApprenantEntity> apprenants;
+    private Collection<MissionEntity> missions;
+
+    public JeuEntity() {
+    }
+
+    public JeuEntity(Integer numjeu, String libellejeu) {
+        this.numjeu = numjeu;
+        this.libellejeu = libellejeu;
+    }
 
     @Id
     @Column(name = "NUMJEU")
@@ -56,21 +64,21 @@ public class JeuEntity {
     }
 
 
-    @OneToMany(mappedBy = "jeuByNumjeu")
-    public Collection<InscriptionEntity> getInscriptionsByNumjeu() {
-        return inscriptionsByNumjeu;
+    @ManyToMany(mappedBy = "jeux")
+    public Collection<ApprenantEntity> getApprenants() {
+        return apprenants;
     }
 
-    public void setInscriptionsByNumjeu(Collection<InscriptionEntity> inscriptionsByNumjeu) {
-        this.inscriptionsByNumjeu = inscriptionsByNumjeu;
+    public void setApprenants(Collection<ApprenantEntity> apprenants) {
+        this.apprenants = apprenants;
     }
 
-    @OneToMany(mappedBy = "jeuByNumjeu")
-    public Collection<MissionEntity> getMissionsByNumjeu() {
-        return missionsByNumjeu;
+    @OneToMany(mappedBy = "jeu")
+    public Collection<MissionEntity> getMissions() {
+        return missions;
     }
 
-    public void setMissionsByNumjeu(Collection<MissionEntity> missionsByNumjeu) {
-        this.missionsByNumjeu = missionsByNumjeu;
+    public void setMissions(Collection<MissionEntity> missions) {
+        this.missions = missions;
     }
 }

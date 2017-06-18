@@ -14,10 +14,20 @@ public class ActionEntity {
     private String libaction;
     private Integer scoremin;
     private ActionEntity actionByActNumaction;
-    private Collection<ActionEntity> actionsByNumaction;
-    private Collection<EstAssocieEntity> estAssociesByNumaction;
-    private Collection<IndicateurEntity> indicateursByNumaction;
-    private Collection<ObtientEntity> obtientsByNumaction;
+    private Collection<ActionEntity> actions;
+    private Collection<ObjectifEntity> objectifs;
+    private Collection<IndicateurEntity> indicateurs;
+    private Collection<ObtientEntity> scores;
+
+    public ActionEntity() {
+    }
+
+    public ActionEntity(Integer numaction, Integer actNumaction, String libaction, Integer scoremin) {
+        this.numaction = numaction;
+        this.actNumaction = actNumaction;
+        this.libaction = libaction;
+        this.scoremin = scoremin;
+    }
 
     @Id
     @Column(name = "NUMACTION")
@@ -94,38 +104,36 @@ public class ActionEntity {
     }
 
     @OneToMany(mappedBy = "actionByActNumaction")
-    public Collection<ActionEntity> getActionsByNumaction() {
-        return actionsByNumaction;
+    public Collection<ActionEntity> getActions() {
+        return actions;
     }
 
-    public void setActionsByNumaction(Collection<ActionEntity> actionsByNumaction) {
-        this.actionsByNumaction = actionsByNumaction;
+    public void setActions(Collection<ActionEntity> actions) {
+        this.actions = actions;
     }
 
-    @OneToMany(mappedBy = "actionByNumaction")
-    public Collection<EstAssocieEntity> getEstAssociesByNumaction() {
-        return estAssociesByNumaction;
+    @OneToMany(mappedBy = "action")
+    public Collection<IndicateurEntity> getIndicateurs() {
+        return indicateurs;
     }
 
-    public void setEstAssociesByNumaction(Collection<EstAssocieEntity> estAssociesByNumaction) {
-        this.estAssociesByNumaction = estAssociesByNumaction;
+    public void setIndicateurs(Collection<IndicateurEntity> indicateurs) {
+        this.indicateurs = indicateurs;
     }
 
-    @OneToMany(mappedBy = "actionByNumaction")
-    public Collection<IndicateurEntity> getIndicateursByNumaction() {
-        return indicateursByNumaction;
+    @OneToMany(mappedBy = "action")
+    public Collection<ObtientEntity> getScores() {
+        return scores;
     }
 
-    public void setIndicateursByNumaction(Collection<IndicateurEntity> indicateursByNumaction) {
-        this.indicateursByNumaction = indicateursByNumaction;
+    public void setScores(Collection<ObtientEntity> scores) {
+        this.scores = scores;
     }
 
-    @OneToMany(mappedBy = "actionByNumaction")
-    public Collection<ObtientEntity> getObtientsByNumaction() {
-        return obtientsByNumaction;
-    }
+    @ManyToMany(mappedBy="actions")
+    public Collection<ObjectifEntity> getObjectifs() { return objectifs; }
 
-    public void setObtientsByNumaction(Collection<ObtientEntity> obtientsByNumaction) {
-        this.obtientsByNumaction = obtientsByNumaction;
+    public void setObjectifs(Collection<ObjectifEntity> objectifs) {
+        this.objectifs = objectifs;
     }
 }
