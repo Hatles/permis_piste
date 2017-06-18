@@ -1,12 +1,10 @@
 package com.polytech.permis_piste.account;
 
-import java.time.ZonedDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.polytech.permis_piste.model.ApprenantEntity;
 
 import javax.persistence.*;
-
 import java.time.Instant;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 //import com.polytech.permis_piste.model.ApprenantEntity;
 
 @SuppressWarnings("serial")
@@ -71,14 +69,14 @@ public class Account implements java.io.Serializable {
 		return created;
 	}
 
-//	@OneToOne(optional = false)
-//	private ApprenantEntity apprenant;
-//
-//	public ApprenantEntity getApprenant() {
-//		return apprenant;
-//	}
-//
-//	public void setApprenant(ApprenantEntity apprenant) {
-//		this.apprenant = apprenant;
-//	}
+	@OneToOne
+	private ApprenantEntity apprenant;
+
+	public ApprenantEntity getApprenant() {
+		return apprenant;
+	}
+
+	public void setApprenant(ApprenantEntity apprenant) {
+		this.apprenant = apprenant;
+	}
 }
