@@ -18,6 +18,11 @@ public class ApprenantEntity {
     public ApprenantEntity() {
     }
 
+    public ApprenantEntity(String nomapprenant, String prenomapprenant) {
+        this.nomapprenant = nomapprenant;
+        this.prenomapprenant = prenomapprenant;
+    }
+
     public ApprenantEntity(Integer numapprenant, String nomapprenant, String prenomapprenant) {
         this.numapprenant = numapprenant;
         this.nomapprenant = nomapprenant;
