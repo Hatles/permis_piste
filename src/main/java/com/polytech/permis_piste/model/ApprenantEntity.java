@@ -1,6 +1,7 @@
 package com.polytech.permis_piste.model;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Collection;
 
 /**
@@ -14,6 +15,13 @@ public class ApprenantEntity {
     private String prenomapprenant;
     private Collection<InscriptionEntity> inscriptionsByNumapprenant;
     private Collection<ObtientEntity> obtientsByNumapprenant;
+
+    public ApprenantEntity(){}
+
+    public ApprenantEntity(String nomapprenant, String prenomapprenant) {
+        this.nomapprenant = nomapprenant;
+        this.prenomapprenant = prenomapprenant;
+    }
 
     @Id
     @Column(name = "NUMAPPRENANT")
@@ -69,7 +77,7 @@ public class ApprenantEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "apprenantByNumapprenant")
+    @OneToMany(mappedBy = "apprenantByNumapprenant", cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<InscriptionEntity> getInscriptionsByNumapprenant() {
         return inscriptionsByNumapprenant;
     }
@@ -78,7 +86,7 @@ public class ApprenantEntity {
         this.inscriptionsByNumapprenant = inscriptionsByNumapprenant;
     }
 
-    @OneToMany(mappedBy = "apprenantByNumapprenant")
+    @OneToMany(mappedBy = "apprenantByNumapprenant", cascade = CascadeType.ALL, orphanRemoval = true)
     public Collection<ObtientEntity> getObtientsByNumapprenant() {
         return obtientsByNumapprenant;
     }
