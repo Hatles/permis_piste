@@ -31,14 +31,6 @@ public class ApprenantController {
         return "apprenant/list";
     }
 
-
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add(Model model) {
-        model.addAttribute("apprenant", new ApprenantEntity());
-        model.addAttribute("typeForm","Ajouter");
-        return "apprenant/form";
-    }
-
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("apprenant", this.apprenantService.getById(id));

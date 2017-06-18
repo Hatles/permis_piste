@@ -69,7 +69,7 @@ public class Account implements java.io.Serializable {
 		return created;
 	}
 
-	@OneToOne
+	@OneToOne(optional = false, fetch = FetchType.EAGER)
 	private ApprenantEntity apprenant;
 
 	public ApprenantEntity getApprenant() {

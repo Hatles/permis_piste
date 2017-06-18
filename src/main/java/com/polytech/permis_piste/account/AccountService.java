@@ -4,6 +4,9 @@ import java.util.Collections;
 
 import javax.annotation.PostConstruct;
 
+import com.polytech.permis_piste.dao.ApprenantDAO;
+import com.polytech.permis_piste.model.ApprenantEntity;
+import com.polytech.permis_piste.service.ApprenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.*;
@@ -27,6 +30,9 @@ public class AccountService implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private ApprenantService apprenantService;
+
 	@PostConstruct	
 	protected void initialize() {
 		save(new Account("user", "demo", "ROLE_USER"));
@@ -36,6 +42,9 @@ public class AccountService implements UserDetailsService {
 	@Transactional
 	public Account save(Account account) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		ApprenantEntity apprenantEntity = new ApprenantEntity(account.getEmail(),account.getEmail());
+		apprenantEntity=apprenantService.save(apprenantEntity);
+		account.setApprenant(apprenantEntity);
 		accountRepository.save(account);
 		return account;
 	}
@@ -52,6 +61,7 @@ public class AccountService implements UserDetailsService {
 	public void signin(Account account) {
 		SecurityContextHolder.getContext().setAuthentication(authenticate(account));
 	}
+
 	
 	private Authentication authenticate(Account account) {
 		return new UsernamePasswordAuthenticationToken(createUser(account), null, Collections.singleton(createAuthority(account)));		

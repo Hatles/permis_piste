@@ -37,9 +37,6 @@
                     <li>
                         <a href="/apprenant/list">Liste des Apprenants</a>
                     </li>
-                    <li>
-                        <a href="/apprenant/add">Ajouter un Apprenants</a>
-                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

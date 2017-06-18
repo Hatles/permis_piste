@@ -1,5 +1,8 @@
 package com.polytech.permis_piste.service;
 
+import com.polytech.permis_piste.account.Account;
+import com.polytech.permis_piste.account.AccountRepository;
+import com.polytech.permis_piste.account.AccountService;
 import com.polytech.permis_piste.dao.ApprenantDAO;
 import com.polytech.permis_piste.model.ApprenantEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +37,19 @@ public class ApprenantService {
     @Autowired
     private ApprenantDAO apprenantDAO;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
     @Transactional
-    public void save(ApprenantEntity apprenantEntity)
+    public ApprenantEntity save(ApprenantEntity apprenantEntity)
     {
-        apprenantDAO.save(apprenantEntity);
+        return apprenantDAO.save(apprenantEntity);
     }
 
     @Transactional
     public void delete(ApprenantEntity apprenantEntity)
     {
+        accountRepository.deleteAccountByApprenant(apprenantEntity);
         apprenantDAO.delete(apprenantEntity);
     }
 
