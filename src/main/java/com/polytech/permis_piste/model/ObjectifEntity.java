@@ -11,16 +11,16 @@ import java.util.HashSet;
 @Table(name = "objectif", schema = "permispiste", catalog = "")
 public class ObjectifEntity {
     private Integer numobjectif;
-    private String libobectif;
+    private String libobjectif;
     private Collection<ActionEntity> actions = new HashSet<>();
     private Collection<MissionEntity> missions = new HashSet<>();
 
     public ObjectifEntity() {
     }
 
-    public ObjectifEntity(Integer numobjectif, String libobectif) {
+    public ObjectifEntity(Integer numobjectif, String libobjectif) {
         this.numobjectif = numobjectif;
-        this.libobectif = libobectif;
+        this.libobjectif = libobjectif;
     }
 
     @Id
@@ -35,13 +35,13 @@ public class ObjectifEntity {
     }
 
     @Basic
-    @Column(name = "LIBOBECTIF")
-    public String getLibobectif() {
-        return libobectif;
+    @Column(name = "LIBOBJECTIF")
+    public String getLibobjectif() {
+        return libobjectif;
     }
 
-    public void setLibobectif(String libobectif) {
-        this.libobectif = libobectif;
+    public void setLibobjectif(String libobectif) {
+        this.libobjectif = libobectif;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ObjectifEntity {
         ObjectifEntity that = (ObjectifEntity) o;
 
         if (numobjectif != null ? !numobjectif.equals(that.numobjectif) : that.numobjectif != null) return false;
-        if (libobectif != null ? !libobectif.equals(that.libobectif) : that.libobectif != null) return false;
+        if (libobjectif != null ? !libobjectif.equals(that.libobjectif) : that.libobjectif != null) return false;
 
         return true;
     }
@@ -60,7 +60,7 @@ public class ObjectifEntity {
     @Override
     public int hashCode() {
         int result = numobjectif != null ? numobjectif.hashCode() : 0;
-        result = 31 * result + (libobectif != null ? libobectif.hashCode() : 0);
+        result = 31 * result + (libobjectif != null ? libobjectif.hashCode() : 0);
         return result;
     }
 

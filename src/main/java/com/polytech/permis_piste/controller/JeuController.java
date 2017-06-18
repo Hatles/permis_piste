@@ -22,6 +22,12 @@ public class JeuController {
     @Autowired
     private JeuService jeuService;
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String list(@PathVariable("id") int id, Model model) {
+        model.addAttribute("jeu", this.jeuService.findByNumjeuAndFetchAll(id));
+        return "jeu/index";
+    }
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("jeux", this.jeuService.findAll());

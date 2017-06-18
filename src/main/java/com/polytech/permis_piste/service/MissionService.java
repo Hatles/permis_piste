@@ -1,7 +1,10 @@
 package com.polytech.permis_piste.service;
 
+import com.polytech.permis_piste.dao.JeuDAO;
 import com.polytech.permis_piste.dao.MissionDAO;
+import com.polytech.permis_piste.dao.ObjectifDAO;
 import com.polytech.permis_piste.model.MissionEntity;
+import com.polytech.permis_piste.model.ObjectifEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -22,10 +25,13 @@ public class MissionService {
     private MissionDAO missionDAO;
 
     @Autowired
-    private JeuService jeuService;
+    private ObjectifService objectifService;
 
     @Autowired
-    private ObjectifService objectifService;
+    private ObjectifDAO objectifDAO;
+
+    @Autowired
+    private JeuDAO jeuDAO;
 
     @PostConstruct
     protected void initialize() {
@@ -84,14 +90,23 @@ public class MissionService {
         return missionEntities;
     }
 
+    public MissionEntity findByNumMissionAndFetchAll(Integer numMission) {
+        MissionEntity missionEntity = missionDAO.findOne(numMission);
+        if (missionEntity == null) return null;
+        missionEntity.setJeu(jeuDAO.findJeuEntityByMissionsIs(missionEntity));
+        missionEntity.setObjectifs(objectifDAO.findObjectifEntitiesByMissionsIs(missionEntity));
+
+        return missionEntity;
+    }
+
     @Transactional
     public MissionEntity getById(int id) {
         return missionDAO.findOne(id);
     }
 
     @Transactional
-    public List<MissionEntity> findAllByJeuId(int jeuID) {
-        return missionDAO.findMissionEntitiesByJeuByNumjeu(jeuID);
+    public List<MissionEntity> findMissionEntitiesByJeu_Numjeu(int jeuID) {
+        return missionDAO.findMissionEntitiesByJeu_Numjeu(jeuID);
     }
 
 

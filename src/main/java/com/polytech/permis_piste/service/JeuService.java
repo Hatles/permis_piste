@@ -1,7 +1,9 @@
 package com.polytech.permis_piste.service;
 
+import com.polytech.permis_piste.dao.ActionDAO;
 import com.polytech.permis_piste.dao.JeuDAO;
 import com.polytech.permis_piste.dao.MissionDAO;
+import com.polytech.permis_piste.dao.ObjectifDAO;
 import com.polytech.permis_piste.model.JeuEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,6 +25,10 @@ public class JeuService {
     private JeuDAO jeuDAO;
     @Autowired
     private MissionDAO missionDAO;
+    @Autowired
+    private ObjectifDAO objectifDAO;
+    @Autowired
+    private ActionDAO actionDAO;
 
     @PostConstruct
     protected void initialize() {
@@ -47,6 +53,20 @@ public class JeuService {
     {
         List<JeuEntity> jeux = jeuDAO.findAll();
         return jeux;
+    }
+
+    public JeuEntity findByNumjeuAndFetchAll(Integer numJeu) {
+        JeuEntity jeu = jeuDAO.findOne(numJeu);
+        if (jeu == null) return null;
+
+        jeu.setMissions(missionDAO.findMissionEntitiesByJeu_Numjeu(numJeu));
+        jeu.getMissions().forEach(mission -> {
+            mission.setObjectifs(objectifDAO.findObjectifEntitiesByMissionsIs(mission));
+            mission.getObjectifs().forEach(objectif -> {
+                objectif.setActions(actionDAO.findActionEntitiesByObjectifsIs(objectif));
+            });
+        });
+        return jeu;
     }
 
     public JeuEntity getById(int id) {

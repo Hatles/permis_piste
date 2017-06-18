@@ -8,7 +8,7 @@
 
 <t:generic_page>
     <jsp:attribute name="title">
-      Liste des Missions
+      <i class="fa fa-newspaper-o fa-fw"></i> Liste des Missions
     </jsp:attribute>
 	<jsp:body>
 		<div class="panel panel-default">
@@ -23,8 +23,6 @@
 						<tr>
 							<th>#</th>
 							<th>Libellé</th>
-							<th>Jeu</th>
-							<th>Objectifs</th>
 							<th>Actions</th>
 						</tr>
 						</thead>
@@ -33,11 +31,9 @@
 							<tr>
 								<td>${item.numjeu}</td>
 								<td>${item.libmission}</td>
-								<td></td>
 								<td>
-									objectifs...
-								</td>
-								<td>
+									<a href="/mission/${item.nummission}" class="btn btn-sm btn-flat btn-info"
+									   title="Accéder"><i class="fa fa-caret-square-o-right"></i> Plus d'infos</a>
 										<a href="/mission/edit/${item.nummission}" class="btn btn-sm btn-flat btn-primary"
 										   title="Modifier"><i class="fa fa-edit"></i></a>
 								</td>

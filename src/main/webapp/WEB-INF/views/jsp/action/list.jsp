@@ -4,21 +4,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<jsp:useBean id="jeux" scope="request" type="java.util.ArrayList<com.polytech.permis_piste.model.JeuEntity>"/>
+<jsp:useBean id="actions" scope="request" type="java.util.ArrayList<com.polytech.permis_piste.model.ActionEntity>"/>
 
 <t:generic_page>
     <jsp:attribute name="title">
-      <i class="fa fa-gamepad fa-fw"></i> Liste des Apprenants
+      <i class="fa fa-gear fa-fw"></i> Liste des Actions
     </jsp:attribute>
 	<jsp:body>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Tableau des Apprenants
+				Tableau des Actions
 			</div>
-			<security:authorize access="hasRole('ROLE_ADMIN')">
-				This text is only visible to an admin
-				<br/>
-			</security:authorize>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="table-responsive">
@@ -31,14 +27,14 @@
 						</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${jeux}" var="item">
+						<c:forEach items="${actions}" var="item">
 							<tr>
-								<td>${item.numjeu}</td>
-								<td>${item.libellejeu}</td>
+								<td>${item.numaction}</td>
+								<td>${item.libaction}</td>
 								<td>
-									<a href="/jeu/${item.numjeu}" class="btn btn-sm btn-flat btn-info"
+									<a href="/action/${item.numaction}" class="btn btn-sm btn-flat btn-info"
 									   title="Accéder"><i class="fa fa-caret-square-o-right"></i> Plus d'infos</a>
-										<a href="/jeu/edit/${item.numjeu}" class="btn btn-sm btn-flat btn-primary"
+										<a href="/action/edit/${item.numaction}" class="btn btn-sm btn-flat btn-primary"
 										   title="Modifier"><i class="fa fa-edit"></i></a>
 								</td>
 							</tr>

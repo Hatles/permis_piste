@@ -1,6 +1,9 @@
 package com.polytech.permis_piste.service;
 
+import com.polytech.permis_piste.dao.ActionDAO;
+import com.polytech.permis_piste.dao.MissionDAO;
 import com.polytech.permis_piste.dao.ObjectifDAO;
+import com.polytech.permis_piste.model.MissionEntity;
 import com.polytech.permis_piste.model.ObjectifEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -20,7 +23,10 @@ import java.util.List;
 public class ObjectifService {
     @Autowired
     private ObjectifDAO objectifDAO;
-
+    @Autowired
+    private ActionDAO actionDAO;
+    @Autowired
+    private MissionDAO missionDAO;
     @PostConstruct
     protected void initialize() {
         save(new ObjectifEntity(1, "Réussir manoeuvre"));
@@ -31,6 +37,16 @@ public class ObjectifService {
         save(new ObjectifEntity(6, "Placement sur la voie"));
         save(new ObjectifEntity(7, "Interaction avec pilote"));
         save(new ObjectifEntity(8, "Respect délai"));
+    }
+
+    public ObjectifEntity findByNumobjectifAndFetchAll(Integer numObjectif) {
+        ObjectifEntity objectifEntity = objectifDAO.findOne(numObjectif);
+        if (objectifEntity == null) return null;
+
+        objectifEntity.setActions(actionDAO.findActionEntitiesByObjectifsIs(objectifEntity));
+        objectifEntity.setMissions(missionDAO.findMissionEntitiesByObjectifsIs(objectifEntity));
+
+        return objectifEntity;
     }
 
     @Transactional

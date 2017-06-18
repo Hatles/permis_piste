@@ -23,11 +23,10 @@ public class MissionController {
     @Autowired
     private JeuService jeuService;
 
-    @RequestMapping(value = "/list/{id}", method = RequestMethod.GET)
-    public String list(@PathVariable("id") int jeuID, Model model) {
-        model.addAttribute("missions", this.missionService.findAllByJeuId(jeuID));
-        model.addAttribute("typeForm","Modifier");
-        return "mission/list";
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String list(@PathVariable("id") int missionID, Model model) {
+        model.addAttribute("mission", this.missionService.findByNumMissionAndFetchAll(missionID));
+        return "mission/index";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

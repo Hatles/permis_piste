@@ -64,6 +64,18 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            <li>
+                <a href="#"><i class="fa fa-gear fa-fw"></i> Actions<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/action/list">Liste des Actions</a>
+                    </li>
+                    <li>
+                        <a href="/action/add">Ajouter une Action</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
             <%--<li>--%>
                 <%--<a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>--%>
                 <%--<ul class="nav nav-second-level">--%>

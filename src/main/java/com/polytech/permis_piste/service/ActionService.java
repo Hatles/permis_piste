@@ -1,6 +1,7 @@
 package com.polytech.permis_piste.service;
 
 import com.polytech.permis_piste.dao.ActionDAO;
+import com.polytech.permis_piste.dao.ObjectifDAO;
 import com.polytech.permis_piste.model.ActionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -46,6 +47,18 @@ public class ActionService {
 
     @Autowired
     private ActionDAO actionDAO;
+
+    @Autowired
+    private ObjectifDAO objectifDAO;
+
+    public ActionEntity findByNumActionAndFetchAll(Integer numAction) {
+        ActionEntity actionEntity = actionDAO.findOne(numAction);
+        if (actionEntity == null) return null;
+
+        actionEntity.setObjectifs(objectifDAO.findObjectifEntitiesByActionsIs(actionEntity));
+        actionEntity.setActions(actionDAO.findActionEntitiesByActNumactionIs(actionEntity.getNumaction()));
+        return actionEntity;
+    }
 
     @Transactional
     public void save(ActionEntity actionEntity)
