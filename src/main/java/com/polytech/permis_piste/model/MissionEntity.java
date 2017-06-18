@@ -17,6 +17,7 @@ public class MissionEntity {
 
     @Id
     @Column(name = "NUMMISSION")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getNummission() {
         return nummission;
     }

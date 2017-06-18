@@ -15,7 +15,6 @@ public class ActionEntity {
     private Integer scoremin;
     private ActionEntity actionByActNumaction;
     private Collection<ActionEntity> actionsByNumaction;
-    private Collection<AppartientEntity> appartientsByNumaction;
     private Collection<EstAssocieEntity> estAssociesByNumaction;
     private Collection<IndicateurEntity> indicateursByNumaction;
     private Collection<ObtientEntity> obtientsByNumaction;
@@ -101,15 +100,6 @@ public class ActionEntity {
 
     public void setActionsByNumaction(Collection<ActionEntity> actionsByNumaction) {
         this.actionsByNumaction = actionsByNumaction;
-    }
-
-    @OneToMany(mappedBy = "actionByNumaction")
-    public Collection<AppartientEntity> getAppartientsByNumaction() {
-        return appartientsByNumaction;
-    }
-
-    public void setAppartientsByNumaction(Collection<AppartientEntity> appartientsByNumaction) {
-        this.appartientsByNumaction = appartientsByNumaction;
     }
 
     @OneToMany(mappedBy = "actionByNumaction")

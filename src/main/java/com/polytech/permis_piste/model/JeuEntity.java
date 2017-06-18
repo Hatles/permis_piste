@@ -11,12 +11,12 @@ import java.util.Collection;
 public class JeuEntity {
     private Integer numjeu;
     private String libellejeu;
-    private Collection<AppartientEntity> appartientsByNumjeu;
     private Collection<InscriptionEntity> inscriptionsByNumjeu;
     private Collection<MissionEntity> missionsByNumjeu;
 
     @Id
     @Column(name = "NUMJEU")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getNumjeu() {
         return numjeu;
     }
@@ -55,14 +55,6 @@ public class JeuEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "jeuByNumjeu")
-    public Collection<AppartientEntity> getAppartientsByNumjeu() {
-        return appartientsByNumjeu;
-    }
-
-    public void setAppartientsByNumjeu(Collection<AppartientEntity> appartientsByNumjeu) {
-        this.appartientsByNumjeu = appartientsByNumjeu;
-    }
 
     @OneToMany(mappedBy = "jeuByNumjeu")
     public Collection<InscriptionEntity> getInscriptionsByNumjeu() {

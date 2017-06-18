@@ -32,41 +32,37 @@
                 <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-users fa-fw"></i> Adhérents<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-users fa-fw"></i> Apprenants<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="Controller?action=getMembers">Liste des Adhérents</a>
+                        <a href="/apprenant/list">Liste des Apprenants</a>
                     </li>
                     <li>
-                        <a href="Controller?action=addMember">Ajouter un Adhérent</a>
+                        <a href="/apprenant/add">Ajouter un Apprenants</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-picture-o fa-fw"></i> Oeuvres<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-gamepad fa-fw"></i> Jeux<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Oeuvres en prêt</a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="Controller?action=getWorksOnLoan">Liste des Oeuvres en prêt</a>
-                            </li>
-                            <li>
-                                <a href="Controller?action=addWorkOnLoan">Ajouter une oeuvre en prêt</a>
-                            </li>
-                        </ul>
+                        <a href="/jeu/list">Liste des Jeux</a>
                     </li>
                     <li>
-                        <a href="#">Oeuvres en vente</a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="Controller?action=getWorksForSale">Liste des Oeuvres en vente</a>
-                            </li>
-                            <li>
-                                <a href="Controller?action=addWorkForSale">Ajouter une oeuvre à vendre</a>
-                            </li>
-                        </ul>
+                        <a href="/jeu/add">Ajouter un Jeu</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-newspaper-o fa-fw"></i> Missions<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/mission/list">Liste des Missions</a>
+                    </li>
+                    <li>
+                        <a href="/mission/add">Ajouter une Mission</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

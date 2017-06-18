@@ -3,39 +3,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <t:generic_page>
     <jsp:attribute name="title">
-      Ajouter un Adhérent
+      ${typeForm} un Apprenant
     </jsp:attribute>
     <jsp:body>
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Ajouter un Adhérent
+                            ${typeForm} un Apprenant
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <form role="form" name='identification' method="post" action="Controller?action=insertMember" onsubmit="return teste()">
+                                <form:form method="post" action="/apprenant/save" modelAttribute="apprenant">
+                                    <form:input type="text" path="numapprenant" hidden="true"/>
                                     <div class="form-group">
-                                        <label>Nom de l'adherent</label>
-                                        <input class="form-control" placeholder="Enter text" type="text" name="name" value="" id ="name">
+                                        <label>Nom de l'apprenant</label>
+                                        <form:input class="form-control" type="text" path="nomapprenant" placeholder="Enter text" />
                                     </div>
                                     <div class="form-group">
-                                        <label>Prenom de l'adherent</label>
-                                        <input class="form-control" placeholder="Enter text" type="text" name="firstname" value="" id ="firstname">
+                                        <label>Prénom de l'apprenant</label>
+                                        <form:input class="form-control" type="text" path="prenomapprenant" placeholder="Enter text" />
                                     </div>
-                                    <div class="form-group">
-                                        <label>Ville de l'adherent</label>
-                                        <input class="form-control" placeholder="Enter text" type="text" name="city" value="" id ="city">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="btn btn-block btn-primary" type="submit" name="bt" value="Ajouter" >
-                                    </div>
-
-                                </form>
+                                    <button class="btn btn-block btn-primary">${typeForm}</button>
+                                </form:form>
                             </div>
                             <!-- /.col-lg-6 (nested) -->
                         </div>

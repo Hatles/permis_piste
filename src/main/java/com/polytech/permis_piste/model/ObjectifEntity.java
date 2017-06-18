@@ -16,6 +16,7 @@ public class ObjectifEntity {
 
     @Id
     @Column(name = "NUMOBJECTIF")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getNumobjectif() {
         return numobjectif;
     }

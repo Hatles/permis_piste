@@ -17,6 +17,7 @@ public class ApprenantEntity {
 
     @Id
     @Column(name = "NUMAPPRENANT")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getNumapprenant() {
         return numapprenant;
     }
