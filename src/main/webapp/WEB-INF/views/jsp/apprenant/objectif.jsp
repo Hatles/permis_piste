@@ -10,9 +10,9 @@
       <i class="fa fa-gamepad fa-fw"></i> Détail de l'objectif: ${objectif.libobjectif}
     </jsp:attribute>
     <jsp:body>
+        <a class="btn  btn-primary"
+                             href="/apprenant/jeu/${jeuid}">Retour au jeu</a>
         <div class="row">
-            <a class="btn  btn-primary"
-               href="/apprenant/jeu/${jeuid}">Retour au jeu</a>
             <c:forEach items="${objectif.actions}" var="action">
                 <div class="col-md-4">
                     <div class="panel panel-info">
