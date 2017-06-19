@@ -21,5 +21,7 @@
             <f:task number="${numberObjectifs}" title="Objectifs" icon="bullseye" type="red" target="objectif/list"/>
             <f:task number="${numberActions}" title="Actions" icon="gear" type="info" target="action/list"/>
         </div>
+
+        <a href="/apprenant/current" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-star-empty"></span> Gérer mes jeux</a>
     </jsp:body>
 </t:generic_page>
