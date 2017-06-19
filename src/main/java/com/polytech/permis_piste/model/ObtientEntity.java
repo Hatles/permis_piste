@@ -11,16 +11,20 @@ import javax.persistence.*;
 public class ObtientEntity {
     private Integer numapprenant;
     private Integer numaction;
+    private Integer numjeu;
     private Integer valeur;
+
     private ApprenantEntity apprenant;
     private ActionEntity action;
+    private JeuEntity jeu;
 
     public ObtientEntity() {
     }
 
-    public ObtientEntity(Integer numapprenant, Integer numaction, Integer valeur) {
+    public ObtientEntity(Integer numapprenant, Integer numaction, Integer numjeu, Integer valeur) {
         this.numapprenant = numapprenant;
         this.numaction = numaction;
+        this.numjeu = numjeu;
         this.valeur = valeur;
     }
 
@@ -44,6 +48,16 @@ public class ObtientEntity {
         this.numaction = numaction;
     }
 
+    @Id
+    @Column(name = "NUMJEU")
+    public Integer getNumjeu() {
+        return numaction;
+    }
+
+    public void setNumjeu(Integer numjeu) {
+        this.numjeu = numjeu;
+    }
+
     @Basic
     @Column(name = "VALEUR")
     public Integer getValeur() {
@@ -63,6 +77,7 @@ public class ObtientEntity {
 
         if (numapprenant != null ? !numapprenant.equals(that.numapprenant) : that.numapprenant != null) return false;
         if (numaction != null ? !numaction.equals(that.numaction) : that.numaction != null) return false;
+        if (numjeu != null ? !numjeu.equals(that.numjeu) : that.numjeu != null) return false;
         if (valeur != null ? !valeur.equals(that.valeur) : that.valeur != null) return false;
 
         return true;
@@ -72,6 +87,7 @@ public class ObtientEntity {
     public int hashCode() {
         int result = numapprenant != null ? numapprenant.hashCode() : 0;
         result = 31 * result + (numaction != null ? numaction.hashCode() : 0);
+        result = 31 * result + (numjeu != null ? numjeu.hashCode() : 0);
         result = 31 * result + (valeur != null ? valeur.hashCode() : 0);
         return result;
     }
@@ -96,5 +112,16 @@ public class ObtientEntity {
 
     public void setAction(ActionEntity action) {
         this.action = action;
+    }
+
+    @MapsId("numjeu")
+    @ManyToOne
+    @JoinColumn(name = "NUMJEU", referencedColumnName = "NUMJEU", nullable = false)
+    public JeuEntity getJeu() {
+        return jeu;
+    }
+
+    public void setJeu(JeuEntity jeu) {
+        this.jeu = jeu;
     }
 }

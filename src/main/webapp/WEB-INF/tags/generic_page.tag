@@ -55,6 +55,9 @@
         <c:url value="/resources/jsp/lib/font-awesome/css/font-awesome.min.css" var="fa_css" />
         <link rel="stylesheet" href="${fa_css}" />
 
+        <c:url value="/resources/css/core.css" var="core_css" />
+        <link rel="stylesheet" href="${core_css}" />
+
         <jsp:invoke fragment="stylesheets"/>
 
         <jsp:invoke fragment="head_area"/>

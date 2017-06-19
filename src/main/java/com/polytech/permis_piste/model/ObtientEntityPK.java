@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class ObtientEntityPK implements Serializable {
     private Integer numapprenant;
     private Integer numaction;
+    private Integer numjeu;
 
     @Column(name = "NUMAPPRENANT", insertable = false, updatable = false)
     @Id
@@ -31,6 +32,16 @@ public class ObtientEntityPK implements Serializable {
         this.numaction = numaction;
     }
 
+    @Column(name = "NUMJEU", insertable = false, updatable = false)
+    @Id
+    public Integer getNumjeu() {
+        return numjeu;
+    }
+
+    public void setNumjeu(Integer numjeu) {
+        this.numjeu = numjeu;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,6 +51,7 @@ public class ObtientEntityPK implements Serializable {
 
         if (numapprenant != null ? !numapprenant.equals(that.numapprenant) : that.numapprenant != null) return false;
         if (numaction != null ? !numaction.equals(that.numaction) : that.numaction != null) return false;
+        if (numjeu != null ? !numjeu.equals(that.numjeu) : that.numjeu != null) return false;
 
         return true;
     }
@@ -48,6 +60,7 @@ public class ObtientEntityPK implements Serializable {
     public int hashCode() {
         int result = numapprenant != null ? numapprenant.hashCode() : 0;
         result = 31 * result + (numaction != null ? numaction.hashCode() : 0);
+        result = 31 * result + (numjeu != null ? numjeu.hashCode() : 0);
         return result;
     }
 }
