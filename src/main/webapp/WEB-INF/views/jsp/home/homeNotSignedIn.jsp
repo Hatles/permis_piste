@@ -31,8 +31,7 @@
     </jsp:attribute>
     <jsp:body>
         <p class="lead">
-            Welcome to the Spring MVC Quickstart application!
-            Get started quickly by signing up.
+Connectez vous pour accéder à l'application
         </p>
         <p>
             <a class="btn btn-success btn-lg" id="signup">Sign up</a>
