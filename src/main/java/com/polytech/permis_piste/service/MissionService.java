@@ -121,7 +121,7 @@ public class MissionService {
             boolean complete = true;
             for (ActionEntity actionEntity : objectifEntity.getActions()) {
                 ObtientEntity obtientEntity = obtientDAO.findObtientEntitiesByApprenantIsAndActionIsAndJeuIs(apprenantEntity,actionEntity,jeuEntity);
-                if(!(obtientEntity!=null)
+                if(!(obtientEntity!=null))
                     complete=false;
             }
             if(complete)
