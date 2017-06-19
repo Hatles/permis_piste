@@ -1,6 +1,6 @@
 package com.polytech.permis_piste.controller;
 
-import com.polytech.permis_piste.model.JeuEntity;
+import com.polytech.permis_piste.model.*;
 import com.polytech.permis_piste.service.JeuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -21,6 +21,7 @@ public class JeuController {
     @Autowired
     private JeuService jeuService;
 
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String list(@PathVariable("id") int id, Model model) {
         model.addAttribute("jeu", this.jeuService.findByNumjeuAndFetchAll(id));
@@ -37,7 +38,7 @@ public class JeuController {
     @Secured({"ROLE_ADMIN"})
     public String add(Model model) {
         model.addAttribute("jeu", new JeuEntity());
-        model.addAttribute("typeForm","Ajouter");
+        model.addAttribute("typeForm", "Ajouter");
         return "jeu/form";
     }
 
@@ -45,7 +46,7 @@ public class JeuController {
     @Secured({"ROLE_ADMIN"})
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("jeu", this.jeuService.getById(id));
-        model.addAttribute("typeForm","Modifier");
+        model.addAttribute("typeForm", "Modifier");
         return "jeu/form";
     }
 

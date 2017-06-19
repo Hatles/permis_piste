@@ -14,7 +14,7 @@ public class ObjectifEntity {
     private String libobjectif;
     private Collection<ActionEntity> actions = new HashSet<>();
     private Collection<MissionEntity> missions = new HashSet<>();
-
+    private Integer nbActionsReussis=0;
     public ObjectifEntity() {
     }
 
@@ -83,5 +83,14 @@ public class ObjectifEntity {
     public ObjectifEntity addAction(ActionEntity action) {
         this.actions.add(action);
         return this;
+    }
+
+    public void setNbActionsReussis(Integer nbActionsReussis) {
+        this.nbActionsReussis = nbActionsReussis;
+    }
+
+    @Transient
+    public Integer getNbActionsReussis() {
+        return this.nbActionsReussis;
     }
 }

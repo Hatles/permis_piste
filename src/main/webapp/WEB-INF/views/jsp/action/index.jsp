@@ -34,6 +34,14 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-body">
+                        <h2>Note moyenne</h2>
+                            ${moyenne}/20
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
                         <h2>Objectifs liés :</h2>
                         <c:forEach items="${action.objectifs}" var="objectif">
                             <a href="/objectif/${objectif.numobjectif}">${objectif.libobjectif}</a><br />
@@ -41,6 +49,20 @@
                     </div>
                 </div>
             </div>
+            <c:if test="${islinked}">
+                <c:choose>
+                    <c:when test="${not empty obtient}">
+                        not null.
+                        ${obtient.valeur}/20
+                        <br />
+                    </c:when>
+                    <c:otherwise>
+                        null.
+                        <br />
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
         </div>
+
     </jsp:body>
 </t:generic_page>

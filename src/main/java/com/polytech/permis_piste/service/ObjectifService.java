@@ -1,9 +1,8 @@
 package com.polytech.permis_piste.service;
 
-import com.polytech.permis_piste.dao.ActionDAO;
-import com.polytech.permis_piste.dao.MissionDAO;
-import com.polytech.permis_piste.dao.ObjectifDAO;
-import com.polytech.permis_piste.model.ObjectifEntity;
+import com.polytech.permis_piste.dao.*;
+import com.polytech.permis_piste.model.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -26,6 +25,12 @@ public class ObjectifService {
     private ActionDAO actionDAO;
     @Autowired
     private MissionDAO missionDAO;
+    @Autowired
+    private ApprenantDAO apprenantDAO;
+    @Autowired
+    private ObtientDAO obtientDAO;
+    @Autowired
+    private JeuDAO jeuDAO;
     @PostConstruct
     protected void initialize() {
         save(new ObjectifEntity(1, "Réussir manoeuvre"));
@@ -76,4 +81,21 @@ public class ObjectifService {
     public int getNumber() {
         return objectifDAO.getNumber();
     }
+
+    @Transactional
+    public Integer getNbActionsReussies(ApprenantEntity apprenantEntity, Integer numObjectif, JeuEntity jeuEntity) {
+        ObjectifEntity objectifEntity = findByNumobjectifAndFetchAll(numObjectif);
+
+        int val=0;
+        for (ActionEntity actionEntity :objectifEntity.getActions()) {
+            ObtientEntity obtientEntity = obtientDAO.findObtientEntitiesByApprenantIsAndActionIsAndJeuIs(apprenantEntity,actionEntity,jeuEntity);
+            if(obtientEntity!=null && actionEntity.getScoremin()<= obtientEntity.getValeur())
+                val++;
+        }
+
+        return val;
+    }
+
+
+
 }

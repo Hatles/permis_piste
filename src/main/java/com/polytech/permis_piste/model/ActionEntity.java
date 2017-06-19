@@ -1,5 +1,7 @@
 package com.polytech.permis_piste.model;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,6 +21,7 @@ public class ActionEntity {
     private Collection<ObjectifEntity> objectifs = new HashSet<>();
     private Collection<IndicateurEntity> indicateurs;
     private Collection<ObtientEntity> scores;
+    private Boolean canDo = false;
 
     public ActionEntity() {
     }
@@ -149,4 +152,10 @@ public class ActionEntity {
         this.objectifs.add(objectif);
         return this;
     }
+
+    @Transient
+    public Boolean getCanDo() { return canDo;}
+
+    public void setCanDo(Boolean canDo) { this.canDo = canDo; }
+
 }

@@ -1,6 +1,7 @@
 package com.polytech.permis_piste.service;
 
 import com.polytech.permis_piste.dao.*;
+import com.polytech.permis_piste.model.ApprenantEntity;
 import com.polytech.permis_piste.model.JeuEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -67,6 +68,12 @@ public class JeuService {
             });
         });
         return jeu;
+    }
+
+    public List<JeuEntity> findAllWhereApprenantNotInscrit(ApprenantEntity apprenantEntity){
+        List<JeuEntity> jeux = jeuDAO.findAll();
+                jeux.removeAll(jeuDAO.findJeuEntitiesByApprenantsIs(apprenantEntity));
+        return jeux;
     }
 
     public JeuEntity getById(int id) {

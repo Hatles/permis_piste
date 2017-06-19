@@ -3,7 +3,8 @@ package com.polytech.permis_piste.service;
 import com.polytech.permis_piste.dao.JeuDAO;
 import com.polytech.permis_piste.dao.MissionDAO;
 import com.polytech.permis_piste.dao.ObjectifDAO;
-import com.polytech.permis_piste.model.MissionEntity;
+import com.polytech.permis_piste.dao.ObtientDAO;
+import com.polytech.permis_piste.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -22,6 +23,9 @@ public class MissionService {
 
     @Autowired
     private MissionDAO missionDAO;
+
+    @Autowired
+    private ObtientDAO obtientDAO;
 
     @Autowired
     private ObjectifService objectifService;
@@ -104,12 +108,26 @@ public class MissionService {
     }
 
     @Transactional
-    public List<MissionEntity> findMissionEntitiesByJeu_Numjeu(int jeuID) {
-        return missionDAO.findMissionEntitiesByJeu_Numjeu(jeuID);
+    public int getNumber() {
+        return missionDAO.getNumber();
     }
 
     @Transactional
-    public int getNumber() {
-        return missionDAO.getNumber();
+    public Integer getNbObjectifsComplets(ApprenantEntity apprenantEntity, Integer numMission, JeuEntity jeuEntity) {
+        MissionEntity missionEntity = findByNumMissionAndFetchAll(numMission);
+
+        int val=0;
+        for (ObjectifEntity objectifEntity : missionEntity.getObjectifs()) {
+            boolean complete = true;
+            for (ActionEntity actionEntity : objectifEntity.getActions()) {
+                ObtientEntity obtientEntity = obtientDAO.findObtientEntitiesByApprenantIsAndActionIsAndJeuIs(apprenantEntity,actionEntity,jeuEntity);
+                if(!(obtientEntity!=null && actionEntity.getScoremin()<= obtientEntity.getValeur()))
+                    complete=false;
+            }
+            if(complete)
+                val++;
+        }
+
+        return val;
     }
 }

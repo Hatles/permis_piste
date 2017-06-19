@@ -2,7 +2,11 @@ package com.polytech.permis_piste.service;
 
 import com.polytech.permis_piste.dao.ActionDAO;
 import com.polytech.permis_piste.dao.ObjectifDAO;
+import com.polytech.permis_piste.dao.ObtientDAO;
 import com.polytech.permis_piste.model.ActionEntity;
+import com.polytech.permis_piste.model.ApprenantEntity;
+import com.polytech.permis_piste.model.JeuEntity;
+import com.polytech.permis_piste.model.ObtientEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -39,7 +43,7 @@ public class ActionService {
         save(new ActionEntity(13, null, "Réaction", 7).addObjectif(objectifService.getById(4)));
         save(new ActionEntity(14, 13, "Action face au danger", 13).addObjectif(objectifService.getById(4)));
         save(new ActionEntity(15, null, "Prise d'informations", 7).addObjectif(objectifService.getById(6)).addObjectif(objectifService.getById(7)));
-        save(new ActionEntity(16, 15, "Placement", 12).addObjectif(objectifService.getById(6)));
+        save(new ActionEntity(16, null, "Placement", 12).addObjectif(objectifService.getById(6)));
         save(new ActionEntity(17, 15, "Utilisation outils comm", 9).addObjectif(objectifService.getById(7)));
         save(new ActionEntity(18, null, "Respect protocole comm", 15).addObjectif(objectifService.getById(7)));
         save(new ActionEntity(19, null, "Travail rendu à temps", 13).addObjectif(objectifService.getById(8)));
@@ -50,6 +54,9 @@ public class ActionService {
 
     @Autowired
     private ObjectifDAO objectifDAO;
+
+    @Autowired
+    private ObtientDAO obtientDAO;
 
     public ActionEntity findByNumActionAndFetchAll(Integer numAction) {
         ActionEntity actionEntity = actionDAO.findOne(numAction);
@@ -86,5 +93,21 @@ public class ActionService {
     @Transactional
     public int getNumber() {
         return actionDAO.getNumber();
+    }
+
+    @Transactional
+    public List<ActionEntity> findActionEntitiesByActNumactionIs(int actNumactoin){
+        return actionDAO.findActionEntitiesByActNumactionIs(actNumactoin);
+    }
+
+    public Float getAvg(int id) {
+        ActionEntity actionEntity = findByNumActionAndFetchAll(id);
+        List<ObtientEntity> obtientEntities = obtientDAO.findObtientEntitiesByActionIs(actionEntity);
+        int val =0;
+        for (ObtientEntity obtientEntity:obtientEntities) {
+            val+=obtientEntity.getValeur();
+        }
+
+        return obtientEntities.isEmpty() ? 0 : Float.valueOf(val/obtientEntities.size());
     }
 }

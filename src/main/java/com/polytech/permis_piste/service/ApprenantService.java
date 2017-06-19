@@ -4,7 +4,11 @@ import com.polytech.permis_piste.account.Account;
 import com.polytech.permis_piste.account.AccountRepository;
 import com.polytech.permis_piste.account.AccountService;
 import com.polytech.permis_piste.dao.ApprenantDAO;
+import com.polytech.permis_piste.dao.JeuDAO;
+import com.polytech.permis_piste.dao.ObtientDAO;
 import com.polytech.permis_piste.model.ApprenantEntity;
+import com.polytech.permis_piste.model.JeuEntity;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -46,6 +50,12 @@ public class ApprenantService {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private JeuDAO jeuDAO;
+
+    @Autowired
+    private ObtientDAO obtientDAO;
+
     @Transactional
     public ApprenantEntity save(ApprenantEntity apprenantEntity)
     {
@@ -67,6 +77,25 @@ public class ApprenantService {
     {
         ApprenantEntity apprenant = apprenantDAO.save(apprenantEntity);
         return apprenant;
+    }
+
+    public ApprenantEntity findByNomAndFetchAll(String nomApprenant) {
+        ApprenantEntity apprenantEntity = apprenantDAO.findByNomapprenant(nomApprenant);
+        return findFetchAll(apprenantEntity);
+    }
+
+    public ApprenantEntity findByNumapprenantAndFetchAll(Integer numApprenant) {
+        ApprenantEntity apprenantEntity = apprenantDAO.findOne(numApprenant);
+        return findFetchAll(apprenantEntity);
+    }
+
+    private ApprenantEntity findFetchAll(ApprenantEntity apprenantEntity){
+        if (apprenantEntity == null) return null;
+
+        apprenantEntity.setJeux(jeuDAO.findJeuEntitiesByApprenantsIs(apprenantEntity));
+        apprenantEntity.setScores(obtientDAO.findObtientEntitiesByApprenantIs(apprenantEntity));
+
+        return apprenantEntity;
     }
 
     @Transactional
@@ -96,6 +125,5 @@ public class ApprenantService {
     public int getNumberApprenant() {
         return apprenantDAO.getNumber();
     }
-
 
 }

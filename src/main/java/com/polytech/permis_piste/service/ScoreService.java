@@ -1,6 +1,12 @@
 package com.polytech.permis_piste.service;
 
+import com.polytech.permis_piste.dao.ActionDAO;
+import com.polytech.permis_piste.dao.ApprenantDAO;
+import com.polytech.permis_piste.dao.JeuDAO;
 import com.polytech.permis_piste.dao.ObtientDAO;
+import com.polytech.permis_piste.model.ActionEntity;
+import com.polytech.permis_piste.model.ApprenantEntity;
+import com.polytech.permis_piste.model.JeuEntity;
 import com.polytech.permis_piste.model.ObtientEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -22,11 +28,13 @@ public class ScoreService {
     private ObtientDAO obtientDAO;
 
     @Autowired
-    private ApprenantService apprenantService;
+    private ActionDAO actionDAO;
 
     @Autowired
-    private ActionService actionService;
+    private ApprenantDAO apprenantDAO;
 
+    @Autowired
+    private JeuDAO jeuDAO;
     @PostConstruct
     protected void initialize() {
         save(new ObtientEntity(3, 3, 2,12));
@@ -58,5 +66,22 @@ public class ScoreService {
     public ObtientEntity getById(int id) {
         return obtientDAO.findOne(id);
     }
+
+
+    public ObtientEntity findObtientEntityByApprenantNumAndActionNumAndJeuNumAndFetchAll(Integer apprenantNum, Integer actionNum, Integer jeuNum) {
+        ApprenantEntity apprenantEntity = apprenantDAO.findOne(apprenantNum);
+        ActionEntity actionEntity = actionDAO.findOne(actionNum);
+        JeuEntity jeuEntity = jeuDAO.findOne(jeuNum);
+
+        ObtientEntity obtientEntity = obtientDAO.findObtientEntitiesByApprenantIsAndActionIsAndJeuIs(apprenantEntity,actionEntity,jeuEntity);
+        if (obtientEntity == null) return null;
+
+        obtientEntity.setApprenant(apprenantEntity);
+        obtientEntity.setAction(actionEntity);
+
+        return obtientEntity;
+    }
+
+
 }
 

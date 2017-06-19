@@ -15,6 +15,7 @@ public class MissionEntity {
     private String libmission;
     private Collection<ObjectifEntity> objectifs = new HashSet<>();
     private JeuEntity jeu;
+    private Integer nbObjectifsComplets=0;
 
     public MissionEntity() {
     }
@@ -107,5 +108,14 @@ public class MissionEntity {
 
     public void setJeu(JeuEntity jeu) {
         this.jeu = jeu;
+    }
+
+    public void setNbObjectifsComplets(Integer nbObjectifsComplets) {
+        this.nbObjectifsComplets = nbObjectifsComplets;
+    }
+
+    @Transient
+    public Integer getNbObjectifsComplets() {
+        return this.nbObjectifsComplets;
     }
 }
