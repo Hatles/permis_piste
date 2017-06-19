@@ -3,6 +3,7 @@ package com.polytech.permis_piste.dao;
 import com.polytech.permis_piste.model.ApprenantEntity;
 import com.polytech.permis_piste.model.JeuEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -19,4 +20,7 @@ public interface ApprenantDAO extends JpaRepository<ApprenantEntity, Integer> {
     ApprenantEntity findByNomapprenant(String name);
 
     List<ApprenantEntity> findApprenantEntitiesByJeuxIs(JeuEntity jeuEntity);
+
+    @Query("select count(a) from ApprenantEntity a")
+    int getNumber();
 }

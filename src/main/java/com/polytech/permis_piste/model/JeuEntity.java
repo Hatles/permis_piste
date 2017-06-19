@@ -2,6 +2,7 @@ package com.polytech.permis_piste.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * Created by kifkif on 03/05/2017.

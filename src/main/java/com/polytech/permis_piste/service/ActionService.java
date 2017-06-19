@@ -82,4 +82,9 @@ public class ActionService {
     public ActionEntity getById(int id) {
         return this.actionDAO.findOne(id);
     }
+
+    @Transactional
+    public int getNumber() {
+        return actionDAO.getNumber();
+    }
 }

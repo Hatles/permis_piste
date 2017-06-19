@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:useBean id="jeux" scope="request" type="java.util.ArrayList<com.polytech.permis_piste.model.JeuEntity>"/>
 
@@ -15,10 +16,6 @@
 			<div class="panel-heading">
 				Tableau des Apprenants
 			</div>
-			<security:authorize access="hasRole('ROLE_ADMIN')">
-				This text is only visible to an admin
-				<br/>
-			</security:authorize>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="table-responsive">
@@ -38,15 +35,20 @@
 								<td>
 									<a href="/jeu/${item.numjeu}" class="btn btn-sm btn-flat btn-info"
 									   title="Accéder"><i class="fa fa-caret-square-o-right"></i> Plus d'infos</a>
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<a href="/jeu/edit/${item.numjeu}" class="btn btn-sm btn-flat btn-primary"
 										   title="Modifier"><i class="fa fa-edit"></i></a>
+									</sec:authorize>
 								</td>
 							</tr>
 						</c:forEach>
 						</tbody>
 					</table>
 				</div>
-				<a class="btn btn-block btn-primary" href="/jeu/add">Ajouter un jeu</a>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<a class="btn btn-block btn-primary" href="/jeu/add">Ajouter un jeu</a>
+				</sec:authorize>
+
 				<!-- /.table-responsive -->
 			</div>
 			<!-- /.panel-body -->

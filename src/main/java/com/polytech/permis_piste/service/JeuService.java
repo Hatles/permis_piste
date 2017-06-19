@@ -1,7 +1,6 @@
 package com.polytech.permis_piste.service;
 
 import com.polytech.permis_piste.dao.*;
-import com.polytech.permis_piste.model.ApprenantEntity;
 import com.polytech.permis_piste.model.JeuEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -76,5 +75,10 @@ public class JeuService {
 
     public JeuEntity getByName(String name) {
         return jeuDAO.findByLibellejeu(name);
+    }
+
+    @Transactional
+    public int getNumber() {
+        return jeuDAO.getNumber();
     }
 }

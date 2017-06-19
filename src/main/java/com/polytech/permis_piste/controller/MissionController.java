@@ -1,15 +1,16 @@
 package com.polytech.permis_piste.controller;
 
-import com.polytech.permis_piste.model.JeuEntity;
 import com.polytech.permis_piste.model.MissionEntity;
 import com.polytech.permis_piste.service.JeuService;
 import com.polytech.permis_piste.service.MissionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created by coren on 17/06/2017.
@@ -36,6 +37,7 @@ public class MissionController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @Secured({"ROLE_ADMIN"})
     public String add(Model model) {
         model.addAttribute("mission", new MissionEntity());
         model.addAttribute("jeux", this.jeuService.findAll());
@@ -44,6 +46,7 @@ public class MissionController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @Secured({"ROLE_ADMIN"})
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("mission", this.missionService.getById(id));
         model.addAttribute("jeux", this.jeuService.findAll());
@@ -52,12 +55,14 @@ public class MissionController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @Secured({"ROLE_ADMIN"})
     public String delete(@PathVariable("id") int id, Model model) {
         this.missionService.delete(this.missionService.getById(id));
         return "redirect:/mission/list";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @Secured({"ROLE_ADMIN"})
     public String save(@ModelAttribute("jeu") MissionEntity missionEntity) {
         this.missionService.save(missionEntity);
         return "redirect:/mission/list";

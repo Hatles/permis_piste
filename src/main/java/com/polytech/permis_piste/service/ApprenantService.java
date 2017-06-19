@@ -63,6 +63,13 @@ public class ApprenantService {
     }
 
     @Transactional
+    public ApprenantEntity saveEmpty(ApprenantEntity apprenantEntity)
+    {
+        ApprenantEntity apprenant = apprenantDAO.save(apprenantEntity);
+        return apprenant;
+    }
+
+    @Transactional
     public void delete(ApprenantEntity apprenantEntity)
     {
         accountRepository.deleteAccountByApprenant(apprenantEntity);
@@ -84,4 +91,11 @@ public class ApprenantService {
     public ApprenantEntity getByName(String name) {
         return apprenantDAO.findByNomapprenant(name);
     }
+
+    @Transactional
+    public int getNumberApprenant() {
+        return apprenantDAO.getNumber();
+    }
+
+
 }

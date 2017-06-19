@@ -4,7 +4,6 @@ import com.polytech.permis_piste.dao.JeuDAO;
 import com.polytech.permis_piste.dao.MissionDAO;
 import com.polytech.permis_piste.dao.ObjectifDAO;
 import com.polytech.permis_piste.model.MissionEntity;
-import com.polytech.permis_piste.model.ObjectifEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -109,5 +108,8 @@ public class MissionService {
         return missionDAO.findMissionEntitiesByJeu_Numjeu(jeuID);
     }
 
-
+    @Transactional
+    public int getNumber() {
+        return missionDAO.getNumber();
+    }
 }

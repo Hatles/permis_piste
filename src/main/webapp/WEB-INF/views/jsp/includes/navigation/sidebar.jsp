@@ -37,6 +37,11 @@
                     <li>
                         <a href="/apprenant/list">Liste des Apprenants</a>
                     </li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li>
+                            <a href="/apprenant/add">Ajouter un Apprenant</a>
+                        </li>
+                    </sec:authorize>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
@@ -46,9 +51,11 @@
                     <li>
                         <a href="/jeu/list">Liste des Jeux</a>
                     </li>
-                    <li>
-                        <a href="/jeu/add">Ajouter un Jeu</a>
-                    </li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li>
+                            <a href="/jeu/add">Ajouter un Jeu</a>
+                        </li>
+                    </sec:authorize>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
@@ -58,9 +65,11 @@
                     <li>
                         <a href="/mission/list">Liste des Missions</a>
                     </li>
-                    <li>
-                        <a href="/mission/add">Ajouter une Mission</a>
-                    </li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li>
+                            <a href="/mission/add">Ajouter une Mission</a>
+                        </li>
+                    </sec:authorize>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
@@ -70,9 +79,11 @@
                     <li>
                         <a href="/objectif/list">Liste des Objectifs</a>
                     </li>
-                    <li>
-                        <a href="/objectif/add">Ajouter un Objectif</a>
-                    </li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li>
+                            <a href="/objectif/add">Ajouter un Objectif</a>
+                        </li>
+                    </sec:authorize>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
@@ -82,78 +93,14 @@
                     <li>
                         <a href="/action/list">Liste des Actions</a>
                     </li>
-                    <li>
-                        <a href="/action/add">Ajouter une Action</a>
-                    </li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <li>
+                            <a href="/action/add">Ajouter une Action</a>
+                        </li>
+                    </sec:authorize>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            <%--<li>--%>
-                <%--<a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>--%>
-                <%--<ul class="nav nav-second-level">--%>
-                    <%--<li>--%>
-                        <%--<a href="panels-wells.html">Panels and Wells</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="buttons.html">Buttons</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="notifications.html">Notifications</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="typography.html">Typography</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="icons.html"> Icons</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="grid.html">Grid</a>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
-                <%--<!-- /.nav-second-level -->--%>
-            <%--</li>--%>
-            <%--<li>--%>
-                <%--<a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>--%>
-                <%--<ul class="nav nav-second-level">--%>
-                    <%--<li>--%>
-                        <%--<a href="#">Second Level Item</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="#">Second Level Item</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="#">Third Level <span class="fa arrow"></span></a>--%>
-                        <%--<ul class="nav nav-third-level">--%>
-                            <%--<li>--%>
-                                <%--<a href="#">Third Level Item</a>--%>
-                            <%--</li>--%>
-                            <%--<li>--%>
-                                <%--<a href="#">Third Level Item</a>--%>
-                            <%--</li>--%>
-                            <%--<li>--%>
-                                <%--<a href="#">Third Level Item</a>--%>
-                            <%--</li>--%>
-                            <%--<li>--%>
-                                <%--<a href="#">Third Level Item</a>--%>
-                            <%--</li>--%>
-                        <%--</ul>--%>
-                        <%--<!-- /.nav-third-level -->--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
-                <%--<!-- /.nav-second-level -->--%>
-            <%--</li>--%>
-            <%--<li>--%>
-                <%--<a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>--%>
-                <%--<ul class="nav nav-second-level">--%>
-                    <%--<li>--%>
-                        <%--<a href="blank.html">Blank Page</a>--%>
-                    <%--</li>--%>
-                    <%--<li>--%>
-                        <%--<a href="login.html">Login Page</a>--%>
-                    <%--</li>--%>
-                <%--</ul>--%>
-                <%--<!-- /.nav-second-level -->--%>
-            <%--</li>--%>
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

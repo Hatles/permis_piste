@@ -10,9 +10,4 @@ public class TestController {
     public String menu() {
         return "includes/navigation/navigation";
     }
-
-    @GetMapping("test")
-    public String test() {
-        return "test";
-    }
 }

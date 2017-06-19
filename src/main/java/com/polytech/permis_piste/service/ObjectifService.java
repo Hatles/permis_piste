@@ -3,7 +3,6 @@ package com.polytech.permis_piste.service;
 import com.polytech.permis_piste.dao.ActionDAO;
 import com.polytech.permis_piste.dao.MissionDAO;
 import com.polytech.permis_piste.dao.ObjectifDAO;
-import com.polytech.permis_piste.model.MissionEntity;
 import com.polytech.permis_piste.model.ObjectifEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -71,5 +70,10 @@ public class ObjectifService {
     @Transactional
     public ObjectifEntity getById(int id) {
         return objectifDAO.findOne(id);
+    }
+
+    @Transactional
+    public int getNumber() {
+        return objectifDAO.getNumber();
     }
 }

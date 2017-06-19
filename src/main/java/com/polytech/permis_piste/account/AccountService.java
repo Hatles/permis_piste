@@ -1,5 +1,7 @@
 package com.polytech.permis_piste.account;
 
+import com.polytech.permis_piste.model.ApprenantEntity;
+import com.polytech.permis_piste.service.ApprenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -29,15 +31,26 @@ public class AccountService implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private ApprenantService apprenantService;
+
 	@PostConstruct	
 	protected void initialize() {
 //		save(new Account("user", "demo", "ROLE_USER"));
-//		save(new Account("admin", "admin", "ROLE_ADMIN"));
+		save(new Account("admin", "admin", "ROLE_ADMIN"));
 	}
 
 	@Transactional
 	public Account save(Account account) {
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
+
+		if(account.getApprenant() == null)
+		{
+			ApprenantEntity apprenant = new ApprenantEntity(account.getEmail(), account.getEmail());
+			apprenantService.saveEmpty(apprenant);
+			account.setApprenant(apprenant);
+		}
+
 		accountRepository.save(account);
 		return account;
 	}

@@ -1,10 +1,9 @@
 package com.polytech.permis_piste.controller;
 
-import com.polytech.permis_piste.model.ApprenantEntity;
 import com.polytech.permis_piste.model.JeuEntity;
-import com.polytech.permis_piste.service.ApprenantService;
 import com.polytech.permis_piste.service.JeuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,6 +34,7 @@ public class JeuController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @Secured({"ROLE_ADMIN"})
     public String add(Model model) {
         model.addAttribute("jeu", new JeuEntity());
         model.addAttribute("typeForm","Ajouter");
@@ -42,6 +42,7 @@ public class JeuController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @Secured({"ROLE_ADMIN"})
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("jeu", this.jeuService.getById(id));
         model.addAttribute("typeForm","Modifier");
@@ -49,12 +50,14 @@ public class JeuController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @Secured({"ROLE_ADMIN"})
     public String delete(@PathVariable("id") int id, Model model) {
         this.jeuService.delete(this.jeuService.getById(id));
         return "redirect:/jeu/list";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @Secured({"ROLE_ADMIN"})
     public String save(@ModelAttribute("jeu") JeuEntity jeuEntity) {
         this.jeuService.save(jeuEntity);
         return "redirect:/jeu/list";

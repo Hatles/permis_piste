@@ -3,6 +3,7 @@ package com.polytech.permis_piste.controller;
 import com.polytech.permis_piste.model.ApprenantEntity;
 import com.polytech.permis_piste.service.ApprenantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,6 +33,7 @@ public class ApprenantController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @Secured({"ROLE_ADMIN"})
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("apprenant", this.apprenantService.getById(id));
         model.addAttribute("typeForm","Modifier");
@@ -39,12 +41,14 @@ public class ApprenantController {
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @Secured({"ROLE_ADMIN"})
     public String delete(@PathVariable("id") int id, Model model) {
         this.apprenantService.delete(this.apprenantService.getById(id));
         return "redirect:/apprenant/list";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @Secured({"ROLE_ADMIN"})
     public String save(@ModelAttribute("apprenant") ApprenantEntity apprenantEntity) {
         this.apprenantService.save(apprenantEntity);
         return "redirect:/apprenant/list";
