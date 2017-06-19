@@ -89,7 +89,7 @@ public class ObjectifService {
         int val=0;
         for (ActionEntity actionEntity :objectifEntity.getActions()) {
             ObtientEntity obtientEntity = obtientDAO.findObtientEntitiesByApprenantIsAndActionIsAndJeuIs(apprenantEntity,actionEntity,jeuEntity);
-            if(obtientEntity!=null && actionEntity.getScoremin()<= obtientEntity.getValeur())
+            if(obtientEntity!=null)
                 val++;
         }
 
