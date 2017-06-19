@@ -51,7 +51,7 @@ public class ObtientEntity {
     @Id
     @Column(name = "NUMJEU")
     public Integer getNumjeu() {
-        return numaction;
+        return numjeu;
     }
 
     public void setNumjeu(Integer numjeu) {
