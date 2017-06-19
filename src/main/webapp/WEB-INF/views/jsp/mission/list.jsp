@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="f" tagdir="/WEB-INF/tags/fragments" %>
 
 <jsp:useBean id="missions" scope="request" type="java.util.ArrayList<com.polytech.permis_piste.model.MissionEntity>"/>
 
@@ -37,6 +39,13 @@
 									<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<a href="/mission/edit/${item.nummission}" class="btn btn-sm btn-flat btn-primary"
 										   title="Modifier"><i class="fa fa-edit"></i></a>
+										<c:set var="modalId">modal_delete_${item.nummission}</c:set>
+										<button type="button" title="Supprimer" class="btn btn-sm  btn-flat btn-danger" data-toggle="modal" data-target="#${modalId}">
+											<i class="fa fa-trash"></i>
+										</button>
+										<f:modal id="${modalId}" title="Supprimer" button="Supprimer" link="/mission/delete/${item.nummission}">
+											Etes vous sur de vouloir supprimer la mission "${item.libmission}" ?
+										</f:modal>
 									</sec:authorize>
 								</td>
 							</tr>

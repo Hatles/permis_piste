@@ -119,8 +119,11 @@
         <script src="${data_tables_bt_js}"></script>
 
         <script>
-            $('table').dataTable();
+            $(document).ready(function () {
+                $('table').dataTable();
+            });
         </script>
+
 
         <jsp:invoke fragment="javascripts"/>
 

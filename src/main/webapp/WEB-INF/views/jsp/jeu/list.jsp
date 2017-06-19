@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="f" tagdir="/WEB-INF/tags/fragments" %>
 
 <jsp:useBean id="jeux" scope="request" type="java.util.ArrayList<com.polytech.permis_piste.model.JeuEntity>"/>
 
@@ -38,6 +39,13 @@
 									<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<a href="/jeu/edit/${item.numjeu}" class="btn btn-sm btn-flat btn-primary"
 										   title="Modifier"><i class="fa fa-edit"></i></a>
+										<c:set var="modalId">modal_delete_${item.numjeu}</c:set>
+										<button type="button" title="Supprimer" class="btn btn-sm  btn-flat btn-danger" data-toggle="modal" data-target="#${modalId}">
+											<i class="fa fa-trash"></i>
+										</button>
+										<f:modal id="${modalId}" title="Supprimer" button="Supprimer" link="/jeu/delete/${item.numjeu}">
+											Etes vous sur de vouloir supprimer le jeu "${item.libellejeu}" ?
+										</f:modal>
 									</sec:authorize>
 								</td>
 							</tr>
