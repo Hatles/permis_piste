@@ -41,6 +41,12 @@
         <c:url value="/resources/jsp/dist/css/sb-admin-2.css" var="sb_admin_css" />
         <link rel="stylesheet" href="${sb_admin_css}" />
 
+        <c:url value="/resources/css/jquery.dataTables.min.css" var="data_tables_css" />
+        <link rel="stylesheet" href="${data_tables_css}" />
+
+        <c:url value="/resources/css/dataTables.bootstrap.min.css" var="data_tables_css" />
+        <link rel="stylesheet" href="${data_tables_bt_css}" />
+
         <!-- Morris Charts CSS -->
         <c:url value="/resources/jsp/lib/morrisjs/morris.css" var="morris_css" />
         <link rel="stylesheet" href="${morris_css}" />
@@ -66,6 +72,10 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
+
+                <c:if test="${message != null}">
+                    <f:alert type="${fn:toLowerCase(message.type)}" message="${message.message}"/>
+                </c:if>
 
                 <jsp:doBody/>
 
@@ -98,6 +108,16 @@
         <!-- Custom Theme JavaScript -->
         <c:url value="/resources/jsp/dist/js/sb-admin-2.js" var="sb_admin_js" />
         <script src="${sb_admin_js}"></script>
+
+        <c:url value="/resources/js/jquery.dataTables.min.js" var="data_tables_js" />
+        <script src="${data_tables_js}"></script>
+
+        <c:url value="/resources/js/dataTables.bootstrap.min.js" var="data_tables_bt_js" />
+        <script src="${data_tables_bt_js}"></script>
+
+        <script>
+            $('table').dataTable();
+        </script>
 
         <jsp:invoke fragment="javascripts"/>
 

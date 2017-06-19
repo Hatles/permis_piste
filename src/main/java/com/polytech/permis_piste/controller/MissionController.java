@@ -3,6 +3,7 @@ package com.polytech.permis_piste.controller;
 import com.polytech.permis_piste.model.MissionEntity;
 import com.polytech.permis_piste.service.JeuService;
 import com.polytech.permis_piste.service.MissionService;
+import com.polytech.permis_piste.support.web.MessageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Created by coren on 17/06/2017.
@@ -56,15 +58,17 @@ public class MissionController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @Secured({"ROLE_ADMIN"})
-    public String delete(@PathVariable("id") int id, Model model) {
+    public String delete(@PathVariable("id") int id, RedirectAttributes ra) {
         this.missionService.delete(this.missionService.getById(id));
+        MessageHelper.addSuccessAttribute(ra, "mission.delete");
         return "redirect:/mission/list";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @Secured({"ROLE_ADMIN"})
-    public String save(@ModelAttribute("jeu") MissionEntity missionEntity) {
+    public String save(@ModelAttribute("mission") MissionEntity missionEntity, RedirectAttributes ra) {
         this.missionService.save(missionEntity);
+        MessageHelper.addSuccessAttribute(ra, "mission.save");
         return "redirect:/mission/list";
     }
 }

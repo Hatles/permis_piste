@@ -11,14 +11,10 @@
       Bienvenue sur Permis Piste Polytech
     </jsp:attribute>
     <jsp:body>
-        <c:if test="${message != null}">
-            <f:alert type="${fn:toLowerCase(message.type)}" message="${message.message}${authentication.name}"/>
-        </c:if>
         <p class="lead text-center">
             Heureux de vous revoir ${account.apprenant.prenomapprenant} !
         </p>
         <div class="row">
-            <f:task number="12" title="Apprenants" icon="users" target="apprenant/list"/>
             <f:task number="${numberApprenants}" title="Apprenants" icon="users" target="apprenant/list"/>
             <f:task number="${numberJeux}" title="Jeux" icon="gamepad" type="green" target="jeu/list"/>
             <f:task number="${numberMissions}" title="Missions" icon="newspaper-o" type="yellow" target="mission/list"/>

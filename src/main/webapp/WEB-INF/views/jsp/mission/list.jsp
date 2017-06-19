@@ -34,15 +34,19 @@
 								<td>
 									<a href="/mission/${item.nummission}" class="btn btn-sm btn-flat btn-info"
 									   title="Accéder"><i class="fa fa-caret-square-o-right"></i> Plus d'infos</a>
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<a href="/mission/edit/${item.nummission}" class="btn btn-sm btn-flat btn-primary"
 										   title="Modifier"><i class="fa fa-edit"></i></a>
+									</sec:authorize>
 								</td>
 							</tr>
 						</c:forEach>
 						</tbody>
 					</table>
 				</div>
-				<a class="btn btn-block btn-primary" href="/jeu/add">Ajouter une mission</a>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<a class="btn btn-block btn-primary" href="/mission/add">Ajouter une mission</a>
+				</sec:authorize>
 				<!-- /.table-responsive -->
 			</div>
 			<!-- /.panel-body -->
