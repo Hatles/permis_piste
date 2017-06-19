@@ -218,12 +218,12 @@
             <li class="divider"></li>
             <sec:authorize access="isAnonymous()">
                 <li>
-                    <a href="login"><i class="fa fa-sign-out fa-fw"></i> Sign in</a>
+                    <a href="/login"><i class="fa fa-sign-out fa-fw"></i> Sign in</a>
                 </li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                 <li>
-                    <a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </sec:authorize>
         </ul>
