@@ -15,7 +15,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h2>Jeu lié:</h2>
-                        <a href="/jeu/${mission.jeu..numjeu}">${mission.jeu.libellejeu}</a><br />
+                        <a href="/jeu/${mission.jeu.numjeu}">${mission.jeu.libellejeu}</a><br />
                     </div>
                 </div>
             </div>

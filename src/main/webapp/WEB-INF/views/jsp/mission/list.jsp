@@ -29,7 +29,7 @@
 						<tbody>
 						<c:forEach items="${missions}" var="item">
 							<tr>
-								<td>${item.numjeu}</td>
+								<td>${item.nummission}</td>
 								<td>${item.libmission}</td>
 								<td>
 									<a href="/mission/${item.nummission}" class="btn btn-sm btn-flat btn-info"
@@ -42,7 +42,7 @@
 						</tbody>
 					</table>
 				</div>
-				<a class="btn btn-block btn-primary" href="/jeu/add">Ajouter un jeu</a>
+				<a class="btn btn-block btn-primary" href="/jeu/add">Ajouter une mission</a>
 				<!-- /.table-responsive -->
 			</div>
 			<!-- /.panel-body -->

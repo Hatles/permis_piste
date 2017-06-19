@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<jsp:useBean id="missions" scope="request" type="java.util.ArrayList<com.polytech.permis_piste.model.MissionEntity>"/>
+<jsp:useBean id="objectifs" scope="request" type="java.util.ArrayList<com.polytech.permis_piste.model.ObjectifEntity>"/>
 
 <t:generic_page>
     <jsp:attribute name="title">
@@ -27,14 +27,14 @@
 						</tr>
 						</thead>
 						<tbody>
-						<c:forEach items="${missions}" var="item">
+						<c:forEach items="${objectifs}" var="item">
 							<tr>
-								<td>${item.numjeu}</td>
-								<td>${item.libmission}</td>
+								<td>${item.numobjectif}</td>
+								<td>${item.libobjectif}</td>
 								<td>
 									<a href="/objectif/${item.numobjectif}" class="btn btn-sm btn-flat btn-info"
 									   title="Accéder"><i class="fa fa-caret-square-o-right"></i> Plus d'infos</a>
-										<a href="/objectif/edit/${item.nummission}" class="btn btn-sm btn-flat btn-primary"
+										<a href="/objectif/edit/${item.numobjectif}" class="btn btn-sm btn-flat btn-primary"
 										   title="Modifier"><i class="fa fa-edit"></i></a>
 								</td>
 							</tr>

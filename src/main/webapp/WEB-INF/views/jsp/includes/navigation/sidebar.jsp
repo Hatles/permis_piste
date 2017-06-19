@@ -65,6 +65,18 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
+                <a href="#"><i class="fa fa-bullseye fa-fw"></i> Objectifs<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/objectif/list">Liste des Objectifs</a>
+                    </li>
+                    <li>
+                        <a href="/objectif/add">Ajouter un Objectif</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-gear fa-fw"></i> Actions<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

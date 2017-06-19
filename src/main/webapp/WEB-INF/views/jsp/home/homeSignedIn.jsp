@@ -8,14 +8,14 @@
 
 <t:generic_page>
     <jsp:attribute name="title">
-      Ajouter un Adhérent
+      Bienvenue sur Permis Piste Polytech
     </jsp:attribute>
     <jsp:body>
         <c:if test="${message != null}">
             <f:alert type="${fn:toLowerCase(message.type)}" message="${message.message}${authentication.name}"/>
         </c:if>
         <p class="lead text-center">
-            Welcome to the Spring MVC Quickstart application!
+            ...
         </p>
     </jsp:body>
 </t:generic_page>

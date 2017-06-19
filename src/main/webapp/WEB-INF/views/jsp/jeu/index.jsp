@@ -11,9 +11,18 @@
     </jsp:attribute>
     <jsp:body>
         <div class="row">
-            <div class="col-md-4">sfdsf</div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h2>Apprenants liés :</h2>
+                        <c:forEach items="${jeu.apprenants}" var="apprenant">
+                            ${apprenant.prenomapprenant} ${apprenant.nomapprenant}<br />
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-8">
-                <h2>Missions</h2>
+                <h2>Missions liées :</h2>
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                     <c:forEach items="${jeu.missions}" var="mission">
                         <%@include file="../mission/detailinclude.jsp" %>
