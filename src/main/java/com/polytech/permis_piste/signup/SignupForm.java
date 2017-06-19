@@ -1,5 +1,6 @@
 package com.polytech.permis_piste.signup;
 
+import com.polytech.permis_piste.model.ApprenantEntity;
 import org.hibernate.validator.constraints.*;
 
 import com.polytech.permis_piste.account.Account;
@@ -15,6 +16,11 @@ public class SignupForm {
 	@EmailExists(message = SignupForm.EMAIL_EXISTS_MESSAGE)
 	private String email;
 
+	@NotBlank(message = SignupForm.NOT_BLANK_MESSAGE)
+	private String nom;
+	@NotBlank(message = SignupForm.NOT_BLANK_MESSAGE)
+	private String prenom;
+
     @NotBlank(message = SignupForm.NOT_BLANK_MESSAGE)
 	private String password;
 
@@ -26,6 +32,22 @@ public class SignupForm {
 		this.email = email;
 	}
 
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -35,6 +57,9 @@ public class SignupForm {
 	}
 
 	public Account createAccount() {
-        return new Account(getEmail(), getPassword(), "ROLE_USER");
+		ApprenantEntity apprenant = new ApprenantEntity(getNom(), getPrenom());
+		Account account = new Account(getEmail(), getPassword(), "ROLE_USER");
+		account.setApprenant(apprenant);
+        return account;
 	}
 }

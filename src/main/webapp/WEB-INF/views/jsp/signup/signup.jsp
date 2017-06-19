@@ -6,7 +6,6 @@
 <%@ taglib prefix="f" tagdir="/WEB-INF/tags/fragments" %>
 <%@ taglib prefix="s" tagdir="/WEB-INF/tags/signup" %>
 
-
 <t:generic_page>
     <jsp:attribute name="title">
         Sign Up
@@ -19,3 +18,4 @@
         </f:panel>
     </jsp:body>
 </t:generic_page>
+

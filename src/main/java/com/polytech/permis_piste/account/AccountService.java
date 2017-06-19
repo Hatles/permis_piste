@@ -50,6 +50,10 @@ public class AccountService implements UserDetailsService {
 			apprenantService.saveEmpty(apprenant);
 			account.setApprenant(apprenant);
 		}
+		else
+		{
+			apprenantService.saveEmpty(account.getApprenant());
+		}
 
 		accountRepository.save(account);
 		return account;
