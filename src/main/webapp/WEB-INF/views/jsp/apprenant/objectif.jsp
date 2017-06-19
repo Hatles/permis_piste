@@ -11,7 +11,7 @@
     </jsp:attribute>
     <jsp:body>
         <a class="btn  btn-primary"
-                             href="/apprenant/jeu/${jeuid}">Retour au jeu</a>
+                             href="/apprenant/jeu/${jeuid}">Retour au jeu</a><br />
         <div class="row">
             <c:forEach items="${objectif.actions}" var="action">
                 <div class="col-md-4">
