@@ -76,6 +76,7 @@ public class ObtientEntity {
         return result;
     }
 
+    @MapsId("numapprenant")
     @ManyToOne
     @JoinColumn(name = "NUMAPPRENANT", referencedColumnName = "NUMAPPRENANT", nullable = false)
     public ApprenantEntity getApprenant() {
@@ -86,6 +87,7 @@ public class ObtientEntity {
         this.apprenant = apprenant;
     }
 
+    @MapsId("numaction")
     @ManyToOne
     @JoinColumn(name = "NUMACTION", referencedColumnName = "NUMACTION", nullable = false)
     public ActionEntity getAction() {
